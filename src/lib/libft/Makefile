@@ -18,6 +18,7 @@
 INCLUDES_PATH	= ./include/
 OBJECTS_PATH	= ./object/
 PRINTF_OBJ_PATH	= ${OBJECTS_PATH}ft_printf/
+GNL_OBJ_PATH	= ${OBJECTS_PATH}ft_gnl/
 SOURCES_PATH	= ./src/
 
 
@@ -31,7 +32,8 @@ MAKE_LIB		= make -sC
 
 
 PRINTF_SOURCES	= $(wildcard ${SOURCES_PATH}ft_printf/*.c)
-SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${PRINTF_SOURCES}
+GNL_SOURCES		= $(wildcard ${SOURCES_PATH}ft_gnl/*.c)
+SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${PRINTF_SOURCES} ${GNL_SOURCES}
 OBJECT_FILES	= $(patsubst ${SOURCES_PATH}%.c, ${OBJECTS_PATH}%.o, ${SOURCE_FILES})
 
 
@@ -59,6 +61,7 @@ ${ALL}: ${LIBRARY_NAME}
 ${OBJECTS_PATH}:
 	@${CREATE_PATH} ${OBJECTS_PATH}
 	@${CREATE_PATH} ${PRINTF_OBJ_PATH}
+	@${CREATE_PATH} ${GNL_OBJ_PATH}
 
 
 ${OBJECTS_PATH}%.o: ${SOURCES_PATH}%.c | ${OBJECTS_PATH}

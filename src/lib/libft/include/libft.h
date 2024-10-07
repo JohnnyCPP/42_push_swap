@@ -19,6 +19,9 @@
 // printf
 # include <stdarg.h>
 # define NULL_POINTER "(nil)"
+// gnl
+# define LAST_FD 256
+# define BUFFER_SIZE 1
 
 typedef struct s_list
 {
@@ -109,5 +112,15 @@ void	ft_base_ph(char const ph, va_list args, int *i, int *count);
 void	ft_no_ph(int *i, int *count);
 
 int		ft_printf(char const *format, ...);
+
+// gnl
+// ///
+
+char	*ft_gnl(int fd);
+char	*ft_gnl_contains(const char *string, char character);
+size_t	ft_gnl_length(const char *string);
+char	*ft_gnl_concat(const char *source, const char *destination);
+char	*ft_gnl_copy(const char *string);
+char	*ft_gnl_cut(const char *string, size_t start, size_t length);
 
 #endif
