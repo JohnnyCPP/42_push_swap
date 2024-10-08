@@ -14,13 +14,13 @@
 void	*ft_calloc(size_t amount, size_t size)
 {
 	void	*pointer;
-	int		index;
+	size_t	index;
 
 	index = 0;
 	pointer = malloc(amount * size);
 	if (pointer == 0)
 		return ((void *) 0);
-	while (index < (int) amount)
+	while (index < amount)
 		((char *) pointer)[index ++] = 0;
 	return (pointer);
 }

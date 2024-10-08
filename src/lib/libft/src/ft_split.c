@@ -42,7 +42,7 @@ static	int	ft_len(const char *string, const char character)
 	return (length);
 }
 
-char	**ft_split(const char *str, const char c)
+char	**ft_split(const char *string, const char delim)
 {
 	int		l_substr;
 	int		start;
@@ -50,22 +50,22 @@ char	**ft_split(const char *str, const char c)
 	int		index_j;
 	char	**result;
 
-	if (!str)
+	if (!string)
 		return ((void *) 0);
-	result = (char **) ft_calloc(ft_len(str, c) + 1, sizeof(char *));
-	l_substr = ft_subs_len(str + 1, c);
+	result = (char **) ft_calloc(ft_len(string, delim) + 1, sizeof(char *));
+	l_substr = ft_subs_len(string + 1, delim);
 	start = 0;
 	end = l_substr + 1;
 	index_j = 0;
-	if (str[start] == c)
+	if (string[start] == delim)
 		start ++;
-	result[index_j ++] = ft_substr(str, start, l_substr);
+	result[index_j ++] = ft_substr(string, start, l_substr);
 	start += l_substr + 1;
-	while (str[end] != 0)
+	while (string[end] != 0)
 	{
-		l_substr = ft_subs_len(str + (end + 1), c);
+		l_substr = ft_subs_len(string + (end + 1), delim);
 		end += l_substr + 1;
-		result[index_j ++] = ft_substr(str, start, l_substr);
+		result[index_j ++] = ft_substr(string, start, l_substr);
 		start += l_substr + 1;
 	}
 	return (result);

@@ -11,9 +11,9 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
+size_t	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
 {
-	int				index;
+	size_t			index;
 	unsigned char	*aux1;
 	unsigned char	*aux2;
 
@@ -22,7 +22,7 @@ int	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
 	index = 0;
 	aux1 = (unsigned char *) ptr_find;
 	aux2 = (unsigned char *) ptr_str;
-	while ((aux2[index] != 0 || aux1[index] != 0) && index < (int) length)
+	while ((aux2[index] != 0 || aux1[index] != 0) && index < length)
 	{
 		if (aux2[index] != aux1[index])
 			return (aux1[index] - aux2[index]);

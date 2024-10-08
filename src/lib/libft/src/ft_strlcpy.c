@@ -13,12 +13,12 @@
 
 size_t	ft_strlcpy(char *destination, const char *source, size_t length)
 {
-	int	index;
+	size_t	index;
 
 	if (!destination || !source)
 		return (0);
 	index = 0;
-	while (index < (int) length - 1)
+	while (index < length - 1)
 	{
 		destination[index] = source[index];
 		index ++;

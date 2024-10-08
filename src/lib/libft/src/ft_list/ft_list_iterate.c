@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_list_iterate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,17 +11,16 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_lstsize(t_list *list)
+void	ft_list_iterate(t_list *list, void (*function)(void *))
 {
-	int	index;
+	t_list	*pointer;
 
-	if (!list)
-		return (0);
-	index = 0;
-	while (list)
+	if (!list || !function)
+		return ;
+	pointer = list;
+	while (pointer)
 	{
-		index ++;
-		list = list->next_node;
+		(*function)(pointer->data);
+		pointer = pointer->next_node;
 	}
-	return (index);
 }

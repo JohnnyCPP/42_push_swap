@@ -14,7 +14,7 @@
 char	*ft_strdup(const char *string)
 {
 	char	*pointer;
-	int		length;
+	size_t	length;
 
 	if (!string)
 		return ((void *) 0);

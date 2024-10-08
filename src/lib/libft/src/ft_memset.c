@@ -11,15 +11,15 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *b, int character, size_t length)
+void	*ft_memset(void *buffer, int character, size_t length)
 {
-	int	index;
+	size_t	index;
 
 	index = 0;
-	while (index < (int) length)
+	while (index < length)
 	{
-		((char *) b)[index] = character;
+		((char *) buffer)[index] = character;
 		index ++;
 	}
-	return (b);
+	return (buffer);
 }

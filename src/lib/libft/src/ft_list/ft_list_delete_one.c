@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_list_delete_one.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,22 +11,11 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstclear(t_list **list, void (*function)(void *))
+void	ft_list_delete_one(t_list *list, void (*function)(void *))
 {
-	t_list	*pointer;
-	t_list	*auxiliar;
-
-	if (!list || !function)
+	if (!list)
 		return ;
-	pointer = *list;
-	auxiliar = pointer->next_node;
-	while (pointer)
-	{
-		(*function)(pointer->data);
-		free(pointer);
-		pointer = auxiliar;
-		if (auxiliar)
-			auxiliar = auxiliar->next_node;
-	}
-	*list = (void *) 0;
+	(*function)(list->data);
+	list->data = (void *) 0;
+	free(list);
 }

@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char c)
+int	ft_isprint(char character)
 {
-	if (32 <= c && c <= 126)
+	if (' ' <= character && character <= '~')
 		return (1);
 	return (0);
 }

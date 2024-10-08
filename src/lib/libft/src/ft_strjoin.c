@@ -14,8 +14,8 @@
 char	*ft_strjoin(const char *string, const char *to_join)
 {
 	char	*pointer;
-	int		length;
-	int		join_length;
+	size_t	length;
+	size_t	join_length;
 
 	if (!string || !to_join)
 		return ((void *) 0);

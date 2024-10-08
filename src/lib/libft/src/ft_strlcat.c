@@ -13,16 +13,16 @@
 
 size_t	ft_strlcat(char *destination, const char *source, size_t length)
 {
-	int	destination_length;
-	int	index;
-	int	index_j;
+	size_t	destination_length;
+	size_t	index;
+	size_t	index_j;
 
 	if (!destination || !source)
 		return (0);
 	destination_length = ft_strlen(destination);
 	index = 0;
 	index_j = destination_length;
-	while (index_j + 1 < (int) length)
+	while (index_j + 1 < length)
 	{
 		destination[index_j] = source[index];
 		index ++;

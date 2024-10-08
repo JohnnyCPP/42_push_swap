@@ -9,13 +9,7 @@
 /*   Updated: 2023/10/29 16:13:45 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-static	int	ft_isupper(char c)
-{
-	if ('A' <= c && c <= 'Z')
-		return (1);
-	return (0);
-}
+#include "libft.h"
 
 int	ft_tolower(int character)
 {

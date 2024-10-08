@@ -9,16 +9,17 @@
 /*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int	ft_strlen(const char *c)
+size_t	ft_strlen(const char *character)
 {
-	int	length;
+	size_t	length;
 
 	length = 0;
-	while (*c)
+	while (*character)
 	{
 		length ++;
-		c ++;
+		character ++;
 	}
 	return (length);
 }

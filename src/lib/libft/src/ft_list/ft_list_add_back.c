@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_list_add_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,11 +11,19 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstdelone(t_list *list, void (*function)(void *))
+void	ft_list_add_back(t_list **list, t_list *new_node)
 {
-	if (!list)
+	t_list	*pointer;
+
+	if (!list || !new_node)
 		return ;
-	(*function)(list->data);
-	list->data = (void *) 0;
-	free(list);
+	if (!*list)
+	{
+		*list = new_node;
+		return ;
+	}
+	pointer = *list;
+	while (pointer->next_node)
+		pointer = pointer->next_node;
+	pointer->next_node = new_node;
 }

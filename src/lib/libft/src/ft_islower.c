@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 08:03:45 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/11/14 08:04:03 by jonnavar         ###   ########.fr       */
+/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
+/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
-void	ft_lstiter(t_list *list, void (*function)(void *))
+int	ft_islower(char character)
 {
-	t_list	*pointer;
-
-	if (!list || !function)
-		return ;
-	pointer = list;
-	while (pointer)
-	{
-		(*function)(pointer->data);
-		pointer = pointer->next_node;
-	}
+	if ('a' <= character && character <= 'z')
+		return (1);
+	return (0);
 }

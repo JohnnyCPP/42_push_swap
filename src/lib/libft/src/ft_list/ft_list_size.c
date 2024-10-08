@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_list_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,20 +11,17 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **list, t_list *new_node)
+int	ft_list_size(t_list *list)
 {
-	t_list	*pointer;
+	int	index;
 
-	if (!list || !new_node)
-		return ;
-	if (!*list)
+	if (!list)
+		return (0);
+	index = 0;
+	while (list)
 	{
-		*list = new_node;
-		return ;
+		index ++;
+		list = list->next_node;
 	}
-	new_node->next_node = (void *) 0;
-	pointer = *list;
-	while (pointer->next_node)
-		pointer = pointer->next_node;
-	pointer->next_node = new_node;
+	return (index);
 }

@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_list_new.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
+/*   Created: 2023/11/14 08:03:45 by jonnavar          #+#    #+#             */
+/*   Updated: 2023/11/14 08:04:03 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isalpha(char character)
+t_list	*ft_list_new(void *data)
 {
-	if (ft_isupper(character) || ft_islower(character))
-		return (1);
-	return (0);
+	t_list	*pointer;
+
+	pointer = (t_list *) ft_calloc(1, sizeof(t_list));
+	if (!pointer)
+		return ((void *) 0);
+	pointer->data = data;
+	return (pointer);
 }

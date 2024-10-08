@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(char c)
+int	ft_isascii(char character)
 {
-	if ((unsigned char) c == c)
+	if ((unsigned char) character == character)
 		return (1);
 	return (0);
 }

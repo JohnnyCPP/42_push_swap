@@ -13,12 +13,12 @@
 
 void	*ft_memcpy(void *destination, const void *source, size_t length)
 {
-	int	index;
+	size_t	index;
 
 	if (!destination && !source)
 		return (destination);
 	index = 0;
-	while (index < (int) length)
+	while (index < length)
 	{
 		((char *) destination)[index] = ((char *) source)[index];
 		index ++;

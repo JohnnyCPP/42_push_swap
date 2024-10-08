@@ -16,5 +16,8 @@ void	ft_putnbr_fd(int value, int file_descriptor)
 	char	*string;
 
 	string = ft_itoa(value);
+	if (!string)
+		return ;
 	ft_putstr_fd(string, file_descriptor);
+	free(string);
 }

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *b, size_t length)
+void	ft_bzero(void *buffer, size_t length)
 {
-	ft_memset(b, '\0', length);
+	ft_memset(buffer, 0, length);
 }
