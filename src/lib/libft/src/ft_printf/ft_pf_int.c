@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_str.c                                     :+:      :+:    :+:   */
+/*   ft_pf_int.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,13 +11,15 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_print_str(va_list args, int *count)
+void	ft_pf_int(va_list args, int *count)
 {
-	char		*string;
-	size_t		length;
+	int		value;
+	char	*string;
+	int		length;
 
-	string = va_arg(args, char *);
-	length = ft_strlen(string);
+	value = va_arg(args, int);
+	string = ft_itoa(value);
 	ft_putstr_fd(string, 1);
+	length = ft_strlen(string);
 	*count += length;
 }

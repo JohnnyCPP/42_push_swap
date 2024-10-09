@@ -621,99 +621,281 @@ t_list	*ft_list_map(t_list *list, void *(*f)(void *), void (*d)(void *));
 // @note Prototypes of printf start here.
 
 /*
+ * @brief Prints a pointer as a hexadecimal value, prepended by "0x".
  *
+ * @param args The variadic argument list to retrieve the pointer from.
+ * @param count A pointer to the counter, updated 
+ *              with the number of characters printed.
+ * 
+ * This function retrieves the pointer from a variadic argument list, 
+ * converts it to its hexadecimal representation, and prints it.
+ *
+ * If the pointer is NULL, it prints "(nil)".
  */
-void	ft_print_ptr(va_list args, int *count);
+void	ft_pf_ptr(va_list args, int *count);
 
 /*
+ * @brief Prints a character from a variadic argument list.
  *
+ * @param args The variadic argument list to retrieve the character from.
+ * @param count A pointer to the counter, updated with the number 
+ *              of characters printed.
+ *
+ * This function retrieves a character from the variadic argument list 
+ * and prints it using the "ft_putchar_fd" function.
+ *
+ * It also increments the counter that tracks the number of 
+ * printed characters.
  */
-void	ft_print_char(va_list args, int *count);
+void	ft_pf_char(va_list args, int *count);
 
 /*
+ * @brief Prints a string from a variadic argument list.
  *
+ * @param args The variadic argument list to retrieve the string from.
+ * @param count A pointer to the counter, updated with the number 
+ *              of characters printed.
+ *
+ * This function retrieves a string from the variadic argument list 
+ * and prints it using the "ft_putstr_fd" function. 
+ *
+ * It also increments the counter that tracks the number of 
+ * printed characters by the length of the string.
  */
-void	ft_print_str(va_list args, int *count);
+void	ft_pf_str(va_list args, int *count);
 
 /*
+ * @brief Handles a string format specifier.
  *
+ * @param ph The format specifier character.
+ * @param args The variadic argument list from which the values are retrieved.
+ * @param i A pointer to the index of the format string.
+ * @param count A pointer to the counter.
+ *
+ * This function checks the "ph" format specifier and calls the appropiate 
+ * print function from the variadic argument list.
+ *
+ * It also increments both the index and the count of printed characters.
+ *
+ * It handles specifiers for character, string, and pointer formats.
  */
-void	ft_str_ph(char const ph, va_list args, int *i, int *count);
+void	ft_pf_ph_str(char const ph, va_list args, int *i, int *count);
 
 /*
+ * @brief Prints an integer value from a variadic argument list.
  *
+ * @param args The variadic argument list to retrieve the integer from.
+ * @param count A pointer to the counter, updated with the number 
+ *              of characters printed.
+ *
+ * This function retrieves an integer from the variadic argument list, 
+ * converts it to a string using "ft_itoa", and prints it to the 
+ * standard output using "ft_putstr_fd".
+ *
+ * It also updates the count of printed characters by adding 
+ * the length of the printed string.
  */
-void	ft_print_num(va_list args, int *count);
+void	ft_pf_int(va_list args, int *count);
 
 /*
+ * @brief Prints an unsigned integer from a variadic argument list.
  *
+ * @param args The variadic argument list to retrieve the value from.
+ * @param count A pointer to the counter, updated with the number 
+ *              of characters printed.
+ *
+ * This function retrieves an unsigned integer from the variadic 
+ * argument list, converts it to a string, and prints it to the 
+ * standard output.
  */
-void	ft_print_unum(va_list args, int *count);
+void	ft_pf_uns_int(va_list args, int *count);
 
 /*
+ * @brief Handles a numeric format specifier.
  *
+ * @param ph The format specifier character.
+ * @param args The variadic argument list from which the values are retrieved.
+ * @param i A pointer to the index of the format string.
+ * @param count A pointer to the counter.
+ *
+ * This function checks the "ph" format specifier and calls the appropiate 
+ * print function from the variadic argument list.
+ *
+ * It also increments both the index and the count of printed characters.
+ *
+ * It handles specifiers for integer, and unsigned integer formats.
  */
-void	ft_num_ph(char const ph, va_list args, int *i, int *count);
+void	ft_pf_ph_int(char const ph, va_list args, int *i, int *count);
 
 /*
+ * @brief Prints a percentage sign '%' and updates the counters.
  *
+ * @param i A pointer to an integer representing the current index.
+ * @param count A pointer to an integer representing the total 
+ *              number of characters printed.
+ *
+ * This function increments the index counter by 2, outputs a percentage sign 
+ * to the standard output, and updates the character count to reflect 
+ * that one character has been printed.
  */
-void	ft_ph_ph(int *i, int *count);
+void	ft_pf_ph_percentage(int *i, int *count);
 
 /*
+ * @brief Prints the (lower) hexadecimal representation of an unsigned integer.
  *
+ * @param args The variable argument list from which to retrieve the 
+ *             unsigned integer.
+ * @param count A pointer to an integer representing the total number 
+ *              of characters printed.
+ * 
+ * This function retrieves an unsigned integer from the argument list and 
+ * prints its hexadecimal representation using lower case letters.
  */
-void	ft_print_lch(va_list args, int *count);
+void	ft_pf_lower_hex(va_list args, int *count);
 
 /*
+ * @brief Prints the (upper) hexadecimal representation of an unsigned integer.
  *
+ * @param args The variable argument list from which to retrieve the 
+ *             unsigned integer.
+ * @param count A pointer to an integer representing the total number 
+ *              of characters printed.
+ * 
+ * This function retrieves an unsigned integer from the argument list and 
+ * prints its hexadecimal representation using upper case letters.
  */
-void	ft_print_uch(va_list args, int *count);
+void	ft_pf_upper_hex(va_list args, int *count);
 
 /*
+ * @brief Handles a base format specifier.
  *
+ * @param ph The format specifier character.
+ * @param args The variadic argument list from which the values are retrieved.
+ * @param i A pointer to the index of the format string.
+ * @param count A pointer to the counter.
+ *
+ * This function checks the "ph" format specifier and calls the appropiate 
+ * print function from the variadic argument list.
+ *
+ * It also increments both the index and the count of printed characters.
+ *
+ * It handles specifiers for lower, and upper hexadecimal formats.
  */
-void	ft_base_ph(char const ph, va_list args, int *i, int *count);
+void	ft_pf_ph_base(char const ph, va_list args, int *i, int *count);
 
 /*
+ * @brief Handles the printing of a literal percentage sign '%'.
  *
+ * @param i A pointer to an integer representing the current index.
+ * @param count A pointer to an integer representing the total number 
+ *              of characters prined.
+ *
+ * This function prints a '%' character to the standard output and 
+ * increments both the index and the count of characters printed by one.
  */
-void	ft_no_ph(int *i, int *count);
+void	ft_pf_ph_default(int *i, int *count);
 
 /*
+ * @brief Custom implementation of a printf-like function.
  *
+ * @param format The format string containing plain characters and 
+ *               placeholders for values to be printed.
+ *
+ * @return The total number of characters printed, or 
+ *         -1 if the format string is NULL.
+ *
+ * This function processes a format string and prints the corresponding 
+ * characters and formatted values to the standard output.
+ *
+ * It supports various format specifiers, including characters, strings, 
+ * integers, unsigned integers, and hexadecimal values.
  */
 int		ft_printf(char const *format, ...);
 
 // @note Prototypes of gnl start here.
 
 /*
+ * @brief Checks if a character is present in a string.
  *
- */
-char	*ft_gnl(int fd);
-
-/*
+ * @param string The string to search within.
+ * @param character The character to search for.
  *
+ * @return A pointer to the first occurrence of the character in the string, 
+ *         or NULL if the character is not found or the string is NULL.
+ *
+ * This function searches for the first occurrence of a specified character 
+ * in a given string.
+ *
+ * If found, it returns a pointer to that character in the string, 
+ * otherwise, it returns NULL.
  */
 char	*ft_gnl_contains(const char *string, char character);
 
 /*
+ * @brief Computes the length of a string.
  *
+ * @param string The string whose length is to be calculated.
+ *
+ * @return The length of the string, or 0 if the string is NULL.
+ *
+ * This function calculates the number of characters in a string, 
+ * excluding the null terminator.
  */
 size_t	ft_gnl_length(const char *string);
 
 /*
+ * @brief Concatenates two strings.
  *
+ * @param source The string to append to the destination.
+ * @param destination The string to which the source will be appended.
+ *
+ * @return A pointer to the newly created string containing the concatenation, 
+ *         or NULL if either string is NULL or if memory allocation fails.
  */
 char	*ft_gnl_concat(const char *source, const char *destination);
 
 /*
+ * @brief Creates a copy of a string.
  *
+ * @param string The string to copy.
+ *
+ * @return A pointer to the newly allocated string containing the copy, 
+ *         or NULL if the input string is NULL or if memory allocation fails.
+ * This function allocates memory for a new string and copies the 
+ * contents of the given string into it, including the null terminator.
  */
 char	*ft_gnl_copy(const char *string);
 
 /*
+ * @brief Cuts a substring from a given string.
  *
+ * @param string The original string to cut from.
+ * @param start The starting index from which to cut.
+ * @param length The number of characters to cut.
+ *
+ * @return A pointer to the newly allocated string containing the cut portion, 
+ *         or NULL if the original string is NULL or 
+ *         if memory allocation fails.
+ *
+ * This function allocates memory for and returns a new string that contains 
+ * a specified portion of the original string, defined by 
+ * the start index and length.
  */
 char	*ft_gnl_cut(const char *string, size_t start, size_t length);
+
+/*
+ * @brief Reads a line from a file descriptor.
+ *
+ * @param fd The file descriptor to read from.
+ *
+ * @return A pointer to the line read from the file, or NULL if 
+ *         an error occurs or if the end of the file is reached.
+ *
+ * This function reads a line from the specified file descriptor and returns 
+ * it as a dynamically allocated string.
+ *
+ * It uses a static buffer to maintain the state across multiple calls, 
+ * allowing for the reading of lines in sequence.
+ */
+char	*ft_gnl(int fd);
 #endif

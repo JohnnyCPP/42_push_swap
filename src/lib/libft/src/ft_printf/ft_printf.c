@@ -11,20 +11,20 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static	void	ft_handle_pholder(char ph, va_list args, int *i, int *count)
+static	void	ft_pf_ph(char ph, va_list args, int *i, int *count)
 {
 	if (ph == '-' || ft_isdigit(ph) || ph == '.')
-		ft_no_ph(i, count);
+		ft_pf_ph_default(i, count);
 	else if (ph == 'c' || ph == 's' || ph == 'p')
-		ft_str_ph(ph, args, i, count);
+		ft_pf_ph_str(ph, args, i, count);
 	else if (ph == 'd' || ph == 'i' || ph == 'u')
-		ft_num_ph(ph, args, i, count);
+		ft_pf_ph_int(ph, args, i, count);
 	else if (ph == '%')
-		ft_ph_ph(i, count);
+		ft_pf_ph_percentage(i, count);
 	else if (ph == 'x' || ph == 'X')
-		ft_base_ph(ph, args, i, count);
+		ft_pf_ph_base(ph, args, i, count);
 	else
-		ft_no_ph(i, count);
+		ft_pf_ph_default(i, count);
 }
 
 int	ft_printf(char const *format, ...)
@@ -41,7 +41,7 @@ int	ft_printf(char const *format, ...)
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
-			ft_handle_pholder(format[i + 1], args, &i, &count);
+			ft_pf_ph(format[i + 1], args, &i, &count);
 		else
 		{
 			ft_putchar_fd(format[i], 1);

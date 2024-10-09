@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_num.c                                     :+:      :+:    :+:   */
+/*   ft_pf_lower_hex.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,15 +11,37 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_print_num(va_list args, int *count)
+static	int	ft_pf_lower_hex_len(unsigned int value)
 {
-	int		value;
-	char	*string;
-	int		length;
+	int	length;
 
-	value = va_arg(args, int);
-	string = ft_itoa(value);
-	ft_putstr_fd(string, 1);
-	length = ft_strlen(string);
-	*count += length;
+	length = 0;
+	while (value)
+	{
+		length ++;
+		value /= 16;
+	}
+	return (length);
+}
+
+static	void	ft_pf_lower_hex_print(unsigned int value)
+{
+	if (value >= 16)
+	{
+		ft_pf_lower_hex_print(value / 16);
+		ft_pf_lower_hex_print(value % 16);
+	}
+	else if (value < 10)
+		ft_putchar_fd(value + '0', 1);
+	else
+		ft_putchar_fd((value - 10) + 'a', 1);
+}
+
+void	ft_pf_lower_hex(va_list args, int *count)
+{
+	unsigned int	value;
+
+	value = va_arg(args, unsigned int);
+	ft_pf_lower_hex_print(value);
+	*count += ft_pf_lower_hex_len(value);
 }

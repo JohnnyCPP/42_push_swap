@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_num_ph.c                                        :+:      :+:    :+:   */
+/*   ft_pf_ph_percentage.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,11 +11,9 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_num_ph(char const ph, va_list args, int *i, int *count)
+void	ft_pf_ph_percentage(int *i, int *count)
 {
 	*i += 2;
-	if (ph == 'd' || ph == 'i')
-		ft_print_num(args, count);
-	else
-		ft_print_unum(args, count);
+	ft_putchar_fd('%', 1);
+	(*count)++;
 }

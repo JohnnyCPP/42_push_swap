@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*   ft_pf_ptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static	void	ft_show_pval(unsigned long value)
+static	void	ft_pf_show_pval(unsigned long value)
 {
 	if (value >= 16)
 	{
-		ft_show_pval(value / 16);
-		ft_show_pval(value % 16);
+		ft_pf_show_pval(value / 16);
+		ft_pf_show_pval(value % 16);
 	}
 	else
 	{
@@ -27,7 +27,7 @@ static	void	ft_show_pval(unsigned long value)
 	}
 }
 
-static	int	ft_val_len(unsigned long value)
+static	int	ft_pf_val_len(unsigned long value)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ static	int	ft_val_len(unsigned long value)
 	return (i);
 }
 
-void	ft_print_ptr(va_list args, int *count)
+void	ft_pf_ptr(va_list args, int *count)
 {
 	void			*pointer;
 	unsigned long	value;
@@ -48,7 +48,7 @@ void	ft_print_ptr(va_list args, int *count)
 
 	pointer = va_arg(args, void *);
 	value = (unsigned long) pointer;
-	length = ft_val_len(value);
+	length = ft_pf_val_len(value);
 	if (length == 0)
 	{
 		ft_putstr_fd(NULL_POINTER, 1);
@@ -57,6 +57,6 @@ void	ft_print_ptr(va_list args, int *count)
 	}
 	ft_putchar_fd('0', 1);
 	ft_putchar_fd('x', 1);
-	ft_show_pval(value);
+	ft_pf_show_pval(value);
 	*count += (length + 2);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_base_ph.c                                       :+:      :+:    :+:   */
+/*   ft_pf_ph_int.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_base_ph(char const ph, va_list args, int *i, int *count)
+void	ft_pf_ph_int(char const ph, va_list args, int *i, int *count)
 {
 	*i += 2;
-	if (ph == 'x')
-		ft_print_lch(args, count);
+	if (ph == 'd' || ph == 'i')
+		ft_pf_int(args, count);
 	else
-		ft_print_uch(args, count);
+		ft_pf_uns_int(args, count);
 }
