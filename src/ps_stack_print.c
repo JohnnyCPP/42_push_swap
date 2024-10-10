@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_stack_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,31 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include <stdio.h>
 
-int	main(int argc, char **argv)
+void	ps_stack_print(t_list *head)
 {
-	int		is_valid;
-	t_list	*stack_a;
-	t_list	*stack_b;
+	long	*number;
+	t_list	*current_node;
 
-	if (argc < 2)
-		return (0);
-	is_valid = ps_is_valid_input(argc, argv);
-	if (!is_valid)
+	if (!head || !head->data)
 	{
-		ps_print_error();
-		return (1);
+		ft_printf("{NULL}\n");
+		return ;
 	}
-	ft_printf("Valid input.\n");
-	// initialize stack_a and stack_b
-	stack_a = ps_init_stack_a(argc, argv);
-	stack_b = ft_list_new(NULL);
-	// develop a function to print a stack
-	ft_printf("Stack_A:");
-	ps_stack_print(stack_a);
-	ft_printf("Stack_B:");
-	ps_stack_print(stack_b);
-	// develop functions to manipulate stacks
-	// implement a radix_sort() function
-	return (0);
+	current_node = head;
+	ft_printf("{");
+	while (current_node)
+	{
+		number = (long *) current_node->data;
+		ft_printf("%l", *number);
+		if (current_node->next_node)
+			ft_printf(", ");
+		current_node = current_node->next_node;
+	}
+	ft_printf("}\n");
 }

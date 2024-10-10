@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
+/**
  * @file libft.h
  * @brief Contains function declarations for the Libft.
  *
@@ -36,7 +36,7 @@
 # define LAST_FD 256
 # define BUFFER_SIZE 1
 
-/*
+/**
  * @brief Structure representing a node in a linked list.
  *
  * The node contains a pointer to data of any type, 
@@ -48,7 +48,7 @@ typedef struct s_list
 	struct s_list	*next_node;
 }	t_list;
 
-/*
+/**
  * @brief Checks if a character is upper case.
  *
  * @param character The character.
@@ -57,7 +57,7 @@ typedef struct s_list
  */
 int		ft_isupper(char character);
 
-/*
+/**
  * @brief Checks if a character is lower case.
  *
  * @param character The character.
@@ -66,7 +66,7 @@ int		ft_isupper(char character);
  */
 int		ft_islower(char character);
 
-/*
+/**
  * @brief Checks if a character is alphabetic.
  *
  * @param character The character.
@@ -75,7 +75,7 @@ int		ft_islower(char character);
  */
 int		ft_isalpha(char character);
 
-/*
+/**
  * @brief Checks if a character is a digit.
  *
  * @param character The character.
@@ -84,7 +84,7 @@ int		ft_isalpha(char character);
  */
 int		ft_isdigit(char character);
 
-/*
+/**
  * @brief Checks if a character is alphanumeric.
  *
  * @param character The character.
@@ -93,7 +93,7 @@ int		ft_isdigit(char character);
  */
 int		ft_isalnum(char character);
 
-/*
+/**
  * @brief Checks if a character is ASCII.
  *
  * @param character The character.
@@ -102,7 +102,7 @@ int		ft_isalnum(char character);
  */
 int		ft_isascii(char character);
 
-/*
+/**
  * @brief Checks if a character is printable.
  *
  * @param character The character.
@@ -111,7 +111,25 @@ int		ft_isascii(char character);
  */
 int		ft_isprint(char c);
 
-/*
+/**
+ * @brief Checks if a character is a plus or minus sign.
+ *
+ * @param character The character.
+ *
+ * @return 1 if it's a sign, 0 if it's not.
+ */
+int		ft_issign(char c);
+
+/**
+ * @brief Checks if a character is a space.
+ *
+ * @param character The character.
+ *
+ * @return 1 if it's a space, 0 if it's not.
+ */
+int		ft_isspace(char c);
+
+/**
  * @brief Calculates the length of a string.
  *
  * @param[character] A pointer to the first character of the string.
@@ -120,7 +138,7 @@ int		ft_isprint(char c);
  */
 size_t	ft_strlen(const char *character);
 
-/*
+/**
  * @brief Sets a block of memory to a specific value over a defined length.
  *
  * @param buffer Pointer to the starting position of the memory block.
@@ -131,7 +149,7 @@ size_t	ft_strlen(const char *character);
  */
 void	*ft_memset(void *buffer, int character, size_t length);
 
-/*
+/**
  * @brief Sets a block of memory to zero over a defined length.
  *
  * @param buffer Pointer to the starting position of the memory block.
@@ -139,7 +157,7 @@ void	*ft_memset(void *buffer, int character, size_t length);
  */
 void	ft_bzero(void *buffer, size_t length);
 
-/*
+/**
  * @brief Copies memory from a source to a destination over a defined length.
  *
  * @param destination Pointer to the memory area where the data is copied.
@@ -150,7 +168,7 @@ void	ft_bzero(void *buffer, size_t length);
  */
 void	*ft_memcpy(void *destination, const void *source, size_t length);
 
-/*
+/**
  * @brief Safe memory-moving function that handles memory overlapping.
  *
  * @param destination Pointer to the memory area where the data is moved.
@@ -171,7 +189,7 @@ void	*ft_memcpy(void *destination, const void *source, size_t length);
  */
 void	*ft_memmove(void *destination, const void *source, size_t length);
 
-/*
+/**
  * @brief Copies a string from source to destination.
  *
  * @param destination The buffer where the string will be copied.
@@ -185,7 +203,7 @@ void	*ft_memmove(void *destination, const void *source, size_t length);
  */
 size_t	ft_strlcpy(char *destination, const char *source, size_t length);
 
-/*
+/**
  * @brief Appends the source string to the destination string.
  *
  * @param destination The buffer containing the initial string.
@@ -200,7 +218,7 @@ size_t	ft_strlcpy(char *destination, const char *source, size_t length);
  */
 size_t	ft_strlcat(char *destination, const char *source, size_t length);
 
-/*
+/**
  * @brief Converts a lower case character to its upper case equivalent.
  *
  * @param character The character.
@@ -211,7 +229,7 @@ size_t	ft_strlcat(char *destination, const char *source, size_t length);
  */
 int		ft_toupper(int character);
 
-/*
+/**
  * @brief Converts an upper case character to its lower case equivalent.
  *
  * @param character The character.
@@ -222,7 +240,7 @@ int		ft_toupper(int character);
  */
 int		ft_tolower(int character);
 
-/*
+/**
  * @brief Locates the first occurrence of a character in a string.
  *
  * @param string The null-terminated string to be searched.
@@ -233,7 +251,7 @@ int		ft_tolower(int character);
  */
 char	*ft_strchr(const char *string, int character);
 
-/*
+/**
  * @brief Locates the last occurrence of a character in a string.
  *
  * @param string The null-terminated string to be searched.
@@ -244,7 +262,7 @@ char	*ft_strchr(const char *string, int character);
  */
 char	*ft_strrchr(const char *string, int character);
 
-/*
+/**
  * @brief Compares two strings up to a specified amount of characters.
  *
  * @param ptr_find The first string to compare.
@@ -262,7 +280,7 @@ char	*ft_strrchr(const char *string, int character);
  */
 size_t	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length);
 
-/*
+/**
  * @brief Searches for the first occurrence of a byte in a memory block.
  *
  * @param ptr_str The memory block to search.
@@ -278,7 +296,7 @@ size_t	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length);
  */
 void	*ft_memchr(const void *ptr_str, int character, size_t length);
 
-/*
+/**
  * @brief Compares two memory blocks byte by byte.
  *
  * @param ptr_find The first memory block to compare.
@@ -294,7 +312,7 @@ void	*ft_memchr(const void *ptr_str, int character, size_t length);
  */
 int		ft_memcmp(const void *ptr_find, const void *ptr_str, size_t length);
 
-/*
+/**
  * @brief Searches for a substring in a string up to a specified length.
  *
  * @param string The string to be searched.
@@ -310,7 +328,29 @@ int		ft_memcmp(const void *ptr_find, const void *ptr_str, size_t length);
  */
 char	*ft_strnstr(const char *string, const char *to_find, size_t length);
 
-/*
+/**
+ * @brief Validates the string representation of an int against overflows.
+ *
+ * @param value The string representation of an integer value.
+ *
+ * @return If the value doens't trigger overflow against INT_MIN or INT_MAX,
+ *         returns 0. Returns 1 for positive overflows,
+ *         and -1 for negative overflows.
+ */
+int		ft_ioverflow(const char *value);
+
+/**
+ * @brief Validates the string representation of a long against overflows.
+ *
+ * @param value The string representation of an integer value.
+ *
+ * @return If the value doens't trigger overflow against INT_MIN or INT_MAX,
+ *         returns 0. Returns 1 for positive overflows,
+ *         and -1 for negative overflows.
+ */
+int		ft_loverflow(const char *value);
+
+/**
  * @brief Converts a string to an integer.
  *
  * @param value A pointer to the string containing the number to be converted.
@@ -324,7 +364,21 @@ char	*ft_strnstr(const char *string, const char *to_find, size_t length);
  */
 int		ft_atoi(const char *value);
 
-/*
+/**
+ * @brief Converts a string to a long.
+ *
+ * @param value A pointer to the string containing the number to be converted.
+ *
+ * @return The long value represented by the string,  
+ *         or 0 if the string doesn't contain a valid number.
+ *
+ * This function converts the initial portion of the string pointed to 
+ * by "value" to a long. It handles optional leading spaces, 
+ * an optional sign ('+' or '-'), and numeric characters.
+ */
+long	ft_atol(const char *value);
+
+/**
  * @brief Allocates memory for an array and initializes all bytes to zero.
  *
  * @param amount The number of elements to allocate.
@@ -334,7 +388,7 @@ int		ft_atoi(const char *value);
  */
 void	*ft_calloc(size_t amount, size_t size);
 
-/*
+/**
  * @brief Duplicates a string by allocating sufficient memory for it.
  *
  * @param string The string to be duplicated.
@@ -347,7 +401,7 @@ void	*ft_calloc(size_t amount, size_t size);
  */
 char	*ft_strdup(const char *string);
 
-/*
+/**
  * @brief Extracts a substring from a string.
  *
  * @param string The original string from which to extract the substring.
@@ -364,7 +418,7 @@ char	*ft_strdup(const char *string);
  */
 char	*ft_substr(const char *string, unsigned int start, size_t length);
 
-/*
+/**
  * @brief Joins two strings into a new allocated string.
  *
  * @param string The first string.
@@ -379,7 +433,7 @@ char	*ft_substr(const char *string, unsigned int start, size_t length);
  */
 char	*ft_strjoin(const char *string, const char *to_join);
 
-/*
+/**
  * @brief Trims leading and trailing characters from a string.
  *
  * @param string The string to be trimmed.
@@ -397,7 +451,7 @@ char	*ft_strjoin(const char *string, const char *to_join);
  */
 char	*ft_strtrim(const char *string, const char *characters);
 
-/*
+/**
  * @brief Splits a string into an array of substrings based on a delimiter.
  *
  * @param string The string to be split.
@@ -414,7 +468,7 @@ char	*ft_strtrim(const char *string, const char *characters);
  */
 char	**ft_split(const char *string, const char delim);
 
-/*
+/**
  * @brief Converts an integer to its string representation.
  *
  * @param value The integer to be converted.
@@ -430,7 +484,23 @@ char	**ft_split(const char *string, const char delim);
  */
 char	*ft_itoa(int value);
 
-/*
+/**
+ * @brief Converts a long to its string representation.
+ *
+ * @param value The long to be converted.
+ *
+ * @return A pointer to the string containing the representation 
+ *         of the long, or NULL if memory allocation fails.
+ *
+ * This function takes a long "value" and converts it to a dynamically 
+ * allocated string representation.
+ *
+ * The string is null-terminated and can represent both positive and 
+ * negative longs.
+ */
+char	*ft_ltoa(long value);
+
+/**
  * @brief Applies a function to each character of a string.
  *
  * @param string The input string to be transformed.
@@ -450,7 +520,7 @@ char	*ft_itoa(int value);
  */
 char	*ft_strmapi(const char *string, char (*function)(unsigned int, char));
 
-/*
+/**
  * @brief Modifies a string applying a function to each character.
  *
  * @param string The mutable string to be iterated over.
@@ -466,7 +536,7 @@ char	*ft_strmapi(const char *string, char (*function)(unsigned int, char));
  */
 void	ft_striteri(char *string, void (*function)(unsigned int, char*));
 
-/*
+/**
  * @brief Writes a character to a file descriptor.
  *
  * @param character The character.
@@ -475,9 +545,9 @@ void	ft_striteri(char *string, void (*function)(unsigned int, char*));
  * This function sends the "character" to the given "file_descriptor", 
  * allowing for output to standard output, files, or other output streams.
  */
-void	ft_putchar_fd(char character, int file_descriptor);
+void	ft_putchar_fd(const char character, int file_descriptor);
 
-/*
+/**
  * @brief Writes a string to a file descriptor.
  *
  * @param string The string.
@@ -488,9 +558,9 @@ void	ft_putchar_fd(char character, int file_descriptor);
  *
  * If the string is NULL, the function does nothing.
  */
-void	ft_putstr_fd(char *string, int file_descriptor);
+void	ft_putstr_fd(const char *string, int file_descriptor);
 
-/*
+/**
  * @brief Writes a string to a file descriptor, followed by a newline.
  *
  * @param string The string.
@@ -501,9 +571,9 @@ void	ft_putstr_fd(char *string, int file_descriptor);
  *
  * If the string is NULL, the function does nothing.
  */
-void	ft_putendl_fd(char *string, int file_descriptor);
+void	ft_putendl_fd(const char *string, int file_descriptor);
 
-/*
+/**
  * @brief Outputs an integer, as a string, to a file descriptor.
  *
  * @param value The integer.
@@ -517,7 +587,21 @@ void	ft_putendl_fd(char *string, int file_descriptor);
  */
 void	ft_putnbr_fd(int value, int file_descriptor);
 
-/*
+/**
+ * @brief Outputs a long, as a string, to a file descriptor.
+ *
+ * @param value The long.
+ * @param file_descriptor The file descriptor.
+ *
+ * This function converts a long to a string and writes it to the 
+ * specified file descriptor.
+ *
+ * It uses "ft_ltoa" to perform the conversion, and it ensures the 
+ * allocated memory is freed after use.
+ */
+void	ft_putlong_fd(long value, int file_descriptor);
+
+/**
  * @brief Creates a new list node with the provided data.
  *
  * @param data A pointer to the data to be stored in the node.
@@ -526,7 +610,7 @@ void	ft_putnbr_fd(int value, int file_descriptor);
  */
 t_list	*ft_list_new(void *data);
 
-/*
+/**
  * @brief Adds a new node to the front of the linked list.
  *
  * @param list A double pointer to the head of the list.
@@ -534,7 +618,7 @@ t_list	*ft_list_new(void *data);
  */
 void	ft_list_add_front(t_list **list, t_list *new_node);
 
-/*
+/**
  * @brief Calculates the number of nodes in a linked list.
  *
  * @param list A pointer to the head of the list.
@@ -543,7 +627,7 @@ void	ft_list_add_front(t_list **list, t_list *new_node);
  */
 int		ft_list_size(t_list *list);
 
-/*
+/**
  * @brief Finds the last node in a linked list.
  *
  * @param list A pointer to the head of the list.
@@ -553,7 +637,7 @@ int		ft_list_size(t_list *list);
  */
 t_list	*ft_list_last(t_list *list);
 
-/*
+/**
  * @brief Adds a node at the end of a linked list.
  *
  * @param list A double pointer to the first node of the linked list.
@@ -566,7 +650,7 @@ t_list	*ft_list_last(t_list *list);
  */
 void	ft_list_add_back(t_list **list, t_list *new_node);
 
-/*
+/**
  * @brief Deletes a node from a linked list.
  *
  * @param list The node to delete.
@@ -578,7 +662,7 @@ void	ft_list_add_back(t_list **list, t_list *new_node);
  */
 void	ft_list_delete_one(t_list *list, void (*function)(void *));
 
-/*
+/**
  * @brief Clears a list, freeing all its nodes.
  *
  * @param list A pointer to the head of the list.
@@ -589,7 +673,7 @@ void	ft_list_delete_one(t_list *list, void (*function)(void *));
  */
 void	ft_list_clear(t_list **list, void (*function)(void *));
 
-/*
+/**
  * @brief Applies a function to the data of each node in a linked list.
  *
  * @param list The head of the linked list.
@@ -600,7 +684,7 @@ void	ft_list_clear(t_list **list, void (*function)(void *));
  */
 void	ft_list_iterate(t_list *list, void (*function)(void *));
 
-/*
+/**
  * @brief Creates a modified copy of a linked list.
  *
  * @param list The original linked list.
@@ -620,7 +704,7 @@ t_list	*ft_list_map(t_list *list, void *(*f)(void *), void (*d)(void *));
 
 // @note Prototypes of printf start here.
 
-/*
+/**
  * @brief Prints a pointer as a hexadecimal value, prepended by "0x".
  *
  * @param args The variadic argument list to retrieve the pointer from.
@@ -634,7 +718,7 @@ t_list	*ft_list_map(t_list *list, void *(*f)(void *), void (*d)(void *));
  */
 void	ft_pf_ptr(va_list args, int *count);
 
-/*
+/**
  * @brief Prints a character from a variadic argument list.
  *
  * @param args The variadic argument list to retrieve the character from.
@@ -649,7 +733,7 @@ void	ft_pf_ptr(va_list args, int *count);
  */
 void	ft_pf_char(va_list args, int *count);
 
-/*
+/**
  * @brief Prints a string from a variadic argument list.
  *
  * @param args The variadic argument list to retrieve the string from.
@@ -664,7 +748,7 @@ void	ft_pf_char(va_list args, int *count);
  */
 void	ft_pf_str(va_list args, int *count);
 
-/*
+/**
  * @brief Handles a string format specifier.
  *
  * @param ph The format specifier character.
@@ -681,7 +765,7 @@ void	ft_pf_str(va_list args, int *count);
  */
 void	ft_pf_ph_str(char const ph, va_list args, int *i, int *count);
 
-/*
+/**
  * @brief Prints an integer value from a variadic argument list.
  *
  * @param args The variadic argument list to retrieve the integer from.
@@ -697,7 +781,23 @@ void	ft_pf_ph_str(char const ph, va_list args, int *i, int *count);
  */
 void	ft_pf_int(va_list args, int *count);
 
-/*
+/**
+ * @brief Prints a long value from a variadic argument list.
+ *
+ * @param args The variadic argument list to retrieve the long from.
+ * @param count A pointer to the counter, updated with the number 
+ *              of characters printed.
+ *
+ * This function retrieves a long from the variadic argument list, 
+ * converts it to a string using "ft_ltoa", and prints it to the 
+ * standard output using "ft_putstr_fd".
+ *
+ * It also updates the count of printed characters by adding 
+ * the length of the printed string.
+ */
+void	ft_pf_long(va_list args, int *count);
+
+/**
  * @brief Prints an unsigned integer from a variadic argument list.
  *
  * @param args The variadic argument list to retrieve the value from.
@@ -710,8 +810,8 @@ void	ft_pf_int(va_list args, int *count);
  */
 void	ft_pf_uns_int(va_list args, int *count);
 
-/*
- * @brief Handles a numeric format specifier.
+/**
+ * @brief Handles an integer format specifier.
  *
  * @param ph The format specifier character.
  * @param args The variadic argument list from which the values are retrieved.
@@ -727,7 +827,24 @@ void	ft_pf_uns_int(va_list args, int *count);
  */
 void	ft_pf_ph_int(char const ph, va_list args, int *i, int *count);
 
-/*
+/**
+ * @brief Handles a long format specifier.
+ *
+ * @param ph The format specifier character.
+ * @param args The variadic argument list from which the values are retrieved.
+ * @param i A pointer to the index of the format string.
+ * @param count A pointer to the counter.
+ *
+ * This function checks the "ph" format specifier and calls the appropiate 
+ * print function from the variadic argument list.
+ *
+ * It also increments both the index and the count of printed characters.
+ *
+ * It handles specifiers for the signed long format.
+ */
+void	ft_pf_ph_long(char const ph, va_list args, int *i, int *count);
+
+/**
  * @brief Prints a percentage sign '%' and updates the counters.
  *
  * @param i A pointer to an integer representing the current index.
@@ -740,7 +857,7 @@ void	ft_pf_ph_int(char const ph, va_list args, int *i, int *count);
  */
 void	ft_pf_ph_percentage(int *i, int *count);
 
-/*
+/**
  * @brief Prints the (lower) hexadecimal representation of an unsigned integer.
  *
  * @param args The variable argument list from which to retrieve the 
@@ -753,7 +870,7 @@ void	ft_pf_ph_percentage(int *i, int *count);
  */
 void	ft_pf_lower_hex(va_list args, int *count);
 
-/*
+/**
  * @brief Prints the (upper) hexadecimal representation of an unsigned integer.
  *
  * @param args The variable argument list from which to retrieve the 
@@ -766,7 +883,7 @@ void	ft_pf_lower_hex(va_list args, int *count);
  */
 void	ft_pf_upper_hex(va_list args, int *count);
 
-/*
+/**
  * @brief Handles a base format specifier.
  *
  * @param ph The format specifier character.
@@ -783,7 +900,7 @@ void	ft_pf_upper_hex(va_list args, int *count);
  */
 void	ft_pf_ph_base(char const ph, va_list args, int *i, int *count);
 
-/*
+/**
  * @brief Handles the printing of a literal percentage sign '%'.
  *
  * @param i A pointer to an integer representing the current index.
@@ -795,7 +912,7 @@ void	ft_pf_ph_base(char const ph, va_list args, int *i, int *count);
  */
 void	ft_pf_ph_default(int *i, int *count);
 
-/*
+/**
  * @brief Custom implementation of a printf-like function.
  *
  * @param format The format string containing plain characters and 
@@ -814,7 +931,7 @@ int		ft_printf(char const *format, ...);
 
 // @note Prototypes of gnl start here.
 
-/*
+/**
  * @brief Checks if a character is present in a string.
  *
  * @param string The string to search within.
@@ -831,7 +948,7 @@ int		ft_printf(char const *format, ...);
  */
 char	*ft_gnl_contains(const char *string, char character);
 
-/*
+/**
  * @brief Computes the length of a string.
  *
  * @param string The string whose length is to be calculated.
@@ -843,7 +960,7 @@ char	*ft_gnl_contains(const char *string, char character);
  */
 size_t	ft_gnl_length(const char *string);
 
-/*
+/**
  * @brief Concatenates two strings.
  *
  * @param source The string to append to the destination.
@@ -854,7 +971,7 @@ size_t	ft_gnl_length(const char *string);
  */
 char	*ft_gnl_concat(const char *source, const char *destination);
 
-/*
+/**
  * @brief Creates a copy of a string.
  *
  * @param string The string to copy.
@@ -866,7 +983,7 @@ char	*ft_gnl_concat(const char *source, const char *destination);
  */
 char	*ft_gnl_copy(const char *string);
 
-/*
+/**
  * @brief Cuts a substring from a given string.
  *
  * @param string The original string to cut from.
@@ -883,7 +1000,7 @@ char	*ft_gnl_copy(const char *string);
  */
 char	*ft_gnl_cut(const char *string, size_t start, size_t length);
 
-/*
+/**
  * @brief Reads a line from a file descriptor.
  *
  * @param fd The file descriptor to read from.

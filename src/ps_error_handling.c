@@ -1,23 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ps_error_handling.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 09:23:10 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/11/13 09:25:06 by jonnavar         ###   ########.fr       */
+/*   Created: 2024/09/29 08:34:07 by jonnavar          #+#    #+#             */
+/*   Updated: 2024/09/29 08:46:34 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_putstr_fd(char *string, int file_descriptor)
+void	ps_print_error(void)
 {
-	int	index;
-
-	if (!string)
-		return ;
-	index = 0;
-	while (string[index])
-		ft_putchar_fd(string[index ++], file_descriptor);
+	ft_putendl_fd("Error", 2);
 }

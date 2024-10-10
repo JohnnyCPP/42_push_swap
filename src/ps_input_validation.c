@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_input_validation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,30 +11,49 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+static	int	ps_is_numeric(char *arg)
 {
 	int		is_valid;
-	t_list	*stack_a;
-	t_list	*stack_b;
+	int		char_index;
+	char	character;
 
-	if (argc < 2)
-		return (0);
-	is_valid = ps_is_valid_input(argc, argv);
-	if (!is_valid)
+	is_valid = 0;
+	char_index = 0;
+	character = *(arg + char_index);
+	if (character == '-')
 	{
-		ps_print_error();
-		return (1);
+		char_index ++;
+		character = *(arg + char_index);
 	}
-	ft_printf("Valid input.\n");
-	// initialize stack_a and stack_b
-	stack_a = ps_init_stack_a(argc, argv);
-	stack_b = ft_list_new(NULL);
-	// develop a function to print a stack
-	ft_printf("Stack_A:");
-	ps_stack_print(stack_a);
-	ft_printf("Stack_B:");
-	ps_stack_print(stack_b);
-	// develop functions to manipulate stacks
-	// implement a radix_sort() function
-	return (0);
+	while (character)
+	{
+		is_valid = ft_isdigit(character);
+		if (!is_valid)
+			break ;
+		char_index ++;
+		character = *(arg + char_index);
+	}
+	return (is_valid);
+}
+
+int	ps_is_valid_input(int argc, char **argv)
+{
+	int		is_valid;
+	int		arg_index;
+	char	*arg;
+
+	is_valid = 0;
+	arg_index = 1;
+	while (arg_index < argc)
+	{
+		arg = *(argv + arg_index);
+		is_valid = ps_is_numeric(arg);
+		if (!is_valid)
+			break ;
+		is_valid = !ft_loverflow(arg);
+		if (!is_valid)
+			break;
+		arg_index ++;
+	}
+	return (is_valid);
 }

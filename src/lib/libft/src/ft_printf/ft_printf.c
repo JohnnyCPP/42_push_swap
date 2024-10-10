@@ -19,6 +19,8 @@ static	void	ft_pf_ph(char ph, va_list args, int *i, int *count)
 		ft_pf_ph_str(ph, args, i, count);
 	else if (ph == 'd' || ph == 'i' || ph == 'u')
 		ft_pf_ph_int(ph, args, i, count);
+	else if (ph == 'l')
+		ft_pf_ph_long(ph, args, i, count);
 	else if (ph == '%')
 		ft_pf_ph_percentage(i, count);
 	else if (ph == 'x' || ph == 'X')
@@ -27,7 +29,7 @@ static	void	ft_pf_ph(char ph, va_list args, int *i, int *count)
 		ft_pf_ph_default(i, count);
 }
 
-int	ft_printf(char const *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		count;

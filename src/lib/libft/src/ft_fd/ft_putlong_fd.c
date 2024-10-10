@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_putlong_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
+/*   Created: 2023/11/13 09:23:10 by jonnavar          #+#    #+#             */
+/*   Updated: 2023/11/13 09:25:06 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlen(const char *character)
+void	ft_putlong_fd(long value, int file_descriptor)
 {
-	size_t	length;
+	char	*string;
 
-	length = 0;
-	while (*character)
-	{
-		length ++;
-		character ++;
-	}
-	return (length);
+	string = ft_ltoa(value);
+	if (!string)
+		return ;
+	ft_putstr_fd(string, file_descriptor);
+	free(string);
 }

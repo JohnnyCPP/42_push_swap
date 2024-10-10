@@ -23,7 +23,7 @@ SOURCES_PATH    = ./src/
 
 
 LIBFT_NAME		= ${LIBFT_PATH}libft.a
-PROGRAM_NAME	= push_swap
+NAME			= push_swap
 
 
 CC				= cc
@@ -73,7 +73,7 @@ DELETE_PATH		= rm -fr
 ###########
 
 
-${ALL}: ${PROGRAM_NAME}
+${ALL}: ${NAME}
 
 
 ${OBJECTS_PATH}:
@@ -92,21 +92,21 @@ ${OBJECTS_PATH}%.o: ${SOURCES_PATH}%.c | ${OBJECTS_PATH}
 	@${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
 
 
-${PROGRAM_NAME}: ${LIBFT_NAME} ${OBJECT_FILES}
-	@${CC} ${DEBUG_SYMBOLS} ${CFLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${PROGRAM_NAME}
-	@echo "The program \"${PROGRAM_NAME}\" has been compiled."
+${NAME}: ${LIBFT_NAME} ${OBJECT_FILES}
+	@${CC} ${DEBUG_SYMBOLS} ${CFLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
+	@echo "The program \"${NAME}\" has been compiled."
 
 
 ${CLEAN}: ${LIB_CLEAN}
 	@${DELETE_FILE} ${OBJECT_FILES}
 	@${DELETE_PATH} ${OBJECTS_PATH}
-	@echo "The objects of program \"${PROGRAM_NAME}\" have been deleted."
+	@echo "The objects of program \"${NAME}\" have been deleted."
 
 
 ${FCLEAN}: ${LIB_CLEAN} ${LIB_DELETE} ${CLEAN}
 	@${DELETE_FILE} ${LIBFT_NAME}
-	@${DELETE_FILE} ${PROGRAM_NAME}
-	@echo "The program \"${PROGRAM_NAME}\" has been deleted."
+	@${DELETE_FILE} ${NAME}
+	@echo "The program \"${NAME}\" has been deleted."
 
 
 ${RE}: ${FCLEAN} ${ALL}

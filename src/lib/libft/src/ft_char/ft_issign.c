@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_issign.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 09:23:10 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/11/13 09:25:06 by jonnavar         ###   ########.fr       */
+/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
+/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_putendl_fd(char *string, int file_descriptor)
+int	ft_issign(char character)
 {
-	if (!string)
-		return ;
-	ft_putstr_fd(string, file_descriptor);
-	ft_putchar_fd('\n', file_descriptor);
+	if (character == '+' || character == '-')
+		return (1);
+	return (0);
 }
