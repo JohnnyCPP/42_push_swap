@@ -11,6 +11,42 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static	int	ps_is_duplicated(long *number, t_list *head)
+{
+	int		times_spotted;
+	long	*current_number;
+
+	times_spotted = 0;
+	while (head)
+	{
+		current_number = (long *) head->data;
+		if (*current_number == *number)
+			times_spotted ++;
+		if (times_spotted > 1)
+			return (1);
+		head = head->next_node;
+	}
+	return (0);
+}
+
+int	ps_contains_duplicates(t_list *head)
+{
+	t_list	*current_node;
+	long	*number;
+	int		is_duplicated;
+
+	current_node = head;
+	while (current_node)
+	{
+		number = (long *) current_node->data;
+		is_duplicated = ps_is_duplicated(number, head);
+		if (is_duplicated)
+			return (1);
+		current_node = current_node->next_node;
+	}
+	return (0);
+}
+
 static	int	ps_is_numeric(char *arg)
 {
 	int		is_valid;

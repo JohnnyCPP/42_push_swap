@@ -25,15 +25,18 @@ int	main(int argc, char **argv)
 		ps_print_error();
 		return (1);
 	}
-	ft_printf("Valid input.\n");
-	// initialize stack_a and stack_b
 	stack_a = ps_init_stack_a(argc, argv);
 	stack_b = ft_list_new(NULL);
-	// develop a function to print a stack
 	ft_printf("Stack_A:");
 	ps_stack_print(stack_a);
 	ft_printf("Stack_B:");
 	ps_stack_print(stack_b);
+	is_valid = !ps_contains_duplicates(stack_a);
+	if (!is_valid)
+	{
+		ps_print_error();
+		return (1);
+	}
 	// develop functions to manipulate stacks
 	// implement a radix_sort() function
 	return (0);

@@ -69,4 +69,17 @@ t_list	*ps_init_stack_a(int argc, char **argv);
  */
 void	ps_stack_print(t_list *head);
 
+/**
+ * @brief Checks if a linked list contains two instances of the same number.
+ *
+ * @param head The first node of the linked list.
+ *
+ * @return 1 if the linked list contains duplicates, 0 if not.
+ *
+ * This function iterates through each node of the linked list and, for each 
+ * value, iterates through all the elements counting how many times that 
+ * value is present in the linked list.
+ */
+int		ps_contains_duplicates(t_list *head);
+
 #endif
