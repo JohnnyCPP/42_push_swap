@@ -21,13 +21,7 @@ void	ps_radix_sort(t_list **stack_a, t_list **stack_b)
 	//
 	// I need a function that accepts a "long" and returns the specific bit 
 	// of that value as an integer
-	char	*binary_value;
 
 	(void) stack_a;
 	(void) stack_b;
-	binary_value = ft_to_binary(2);
-	char	*ptr_to_b = ft_split_binary_copy(binary_value);
-	ft_printf("Binary:\"%s\"\n", ptr_to_b);
-	free(binary_value);
-	free(ptr_to_b);
 }

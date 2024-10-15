@@ -38,10 +38,14 @@ int	main(int argc, char **argv)
 	is_valid = !ps_contains_duplicates(stack_a);
 	if (!is_valid)
 	{
+		ps_terminate_stack_a(&stack_a);
 		ps_print_error();
 		return (1);
 	}
+	ft_printf("Binary representation of stack_a: ");
+	ps_stack_print_binary(stack_a);
 	ps_print(stack_a, stack_b);
+	ft_printf("Running radix sort...\n");
 	ps_radix_sort(&stack_a, &stack_b);
 	ps_print(stack_a, stack_b);
 	ps_terminate_stack_a(&stack_a);

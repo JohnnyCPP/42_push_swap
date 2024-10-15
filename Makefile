@@ -47,6 +47,7 @@ FCLEAN			= fclean
 RE				= re
 CC_SANITIZER	= sanitize
 VALGRIND		= valgrind
+RUN_MOCK_VALUES	= mock_run
 VALGRIND_ARGS	= 1 2 3 4 5
 LIB_DELETE		= lib_${DELETE}
 LIB_CLEAN		= lib_${CLEAN}
@@ -125,11 +126,17 @@ ${RE}: ${FCLEAN} ${ALL}
 
 ${CC_SANITIZER}: ${LIBFT_NAME} ${OBJECT_FILES}
 	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
-	@echo "C compiler sanitizer has been added to debug memory issues."
+	@echo "C compiler's sanitizer has been added to debug memory issues."
 
 
 ${VALGRIND}: ${NAME}
 	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${VALGRIND_ARGS}
+
+
+${RUN_MOCK_VALUES}: ${NAME}
+	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
+	@echo "Running push_swap with a list of mock values..."
+	@./${NAME} ${MOCK_VALUES}
 
 
 # library rules

@@ -80,6 +80,17 @@ void	ps_terminate_stack_a(t_list **head);
 void	ps_stack_print(t_list *head);
 
 /**
+ * @brief Formats and displays a linked list with binary values.
+ *
+ * @param head The first node of the linked list.
+ *
+ * This function prints the contents of a linked list, converting each 
+ * long value to a binary representation in a null-terminated string, 
+ * comma separated, and between curly braces.
+ */
+void	ps_stack_print_binary(t_list *head);
+
+/**
  * @brief Checks if a linked list contains two instances of the same number.
  *
  * @param head The first node of the linked list.
