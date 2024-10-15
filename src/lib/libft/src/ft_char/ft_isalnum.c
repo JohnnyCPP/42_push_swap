@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isalnum(char character)
+int	ft_isalnum(const char character)
 {
 	if (ft_isdigit(character) || ft_isalpha(character))
 		return (1);

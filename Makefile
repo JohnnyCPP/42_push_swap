@@ -19,6 +19,7 @@ INCLUDES_PATH	= ./include/
 LIBFT_PATH		= ./src/lib/libft/
 LIBFT_INC_PATH	= ${LIBFT_PATH}include/
 OBJECTS_PATH	= ./object/
+INST_OBJ_PATH	= ${OBJECTS_PATH}ps_instructions/
 SOURCES_PATH    = ./src/
 
 
@@ -28,7 +29,12 @@ NAME			= push_swap
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
-DEBUG_SYMBOLS	= -g
+# both "-g" or "-g3" flags can be used.
+# "-g3" includes everything included with "-g", but with 
+# additional information to debug preprocessor directives
+DEBUG_SYMBOLS	= -g3
+SANITIZE_FLAGS	= -fsanitize=address ${DEBUG_SYMBOLS}
+VALGRIND_FLAGS	= --track-origins=yes -s --leak-check=full
 INCLUDE_LIBFT	= -I ${LIBFT_INC_PATH}
 INCLUDE			= -I ${INCLUDES_PATH} ${INCLUDE_LIBFT}
 MAKE_LIB		= make -sC
@@ -39,6 +45,9 @@ DELETE			= delete_library
 CLEAN			= clean
 FCLEAN			= fclean
 RE				= re
+CC_SANITIZER	= sanitize
+VALGRIND		= valgrind
+VALGRIND_ARGS	= 1 2 3 4 5
 LIB_DELETE		= lib_${DELETE}
 LIB_CLEAN		= lib_${CLEAN}
 LIB_FCLEAN		= lib_${FCLEAN}
@@ -52,7 +61,8 @@ FCLEAN_LIBFT	= ${MAKE_LIBFT} ${FCLEAN}
 RE_LIBFT		= ${MAKE_LIBFT} ${RE}
 
 
-SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c)
+INST_SOURCES	= $(wildcard ${SOURCES_PATH}ps_instructions/*.c)
+SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${INST_SOURCES}
 # "patsubst": pattern substitution
 # parameters: pattern, replacement, text
 #
@@ -78,6 +88,7 @@ ${ALL}: ${NAME}
 
 ${OBJECTS_PATH}:
 	@${CREATE_PATH} ${OBJECTS_PATH}
+	@${CREATE_PATH} ${INST_OBJ_PATH}
 
 
 # "$@" refers to the target (%.o)
@@ -93,7 +104,7 @@ ${OBJECTS_PATH}%.o: ${SOURCES_PATH}%.c | ${OBJECTS_PATH}
 
 
 ${NAME}: ${LIBFT_NAME} ${OBJECT_FILES}
-	@${CC} ${DEBUG_SYMBOLS} ${CFLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
+	@${CC} ${CFLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
 	@echo "The program \"${NAME}\" has been compiled."
 
 
@@ -110,6 +121,15 @@ ${FCLEAN}: ${LIB_CLEAN} ${LIB_DELETE} ${CLEAN}
 
 
 ${RE}: ${FCLEAN} ${ALL}
+
+
+${CC_SANITIZER}: ${LIBFT_NAME} ${OBJECT_FILES}
+	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
+	@echo "C compiler sanitizer has been added to debug memory issues."
+
+
+${VALGRIND}: ${NAME}
+	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${VALGRIND_ARGS}
 
 
 # library rules

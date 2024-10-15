@@ -16,6 +16,11 @@ static	void	free_number(void *number)
 	free((long *) number);
 }
 
+void	ps_terminate_stack_a(t_list **head)
+{
+	ft_list_clear(head, free_number);
+}
+
 t_list	*ps_init_stack_a(int argc, char **argv)
 {
 	int		arg_index;
@@ -32,16 +37,13 @@ t_list	*ps_init_stack_a(int argc, char **argv)
 		number = (long *) ft_calloc(1, sizeof(long));
 		if (!number)
 		{
-			ft_list_clear(&last_node, free_number);// delete the entire list from the beginning
+			ps_terminate_stack_a(&last_node);
 			return (NULL);
 		}
 		*number = ft_atol(arg);
-		// create a new pointer to a node
 		new_node = ft_list_new(number);
-		// point the new node to the last created node, if any
 		if (last_node)
 			new_node->next_node = last_node;
-		// set the new node as the "last created node"
 		last_node = new_node;
 		arg_index --;
 	}

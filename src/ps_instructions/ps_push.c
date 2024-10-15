@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_stack_print.c                                   :+:      :+:    :+:   */
+/*   ps_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,28 +11,32 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_stack_print(t_list *head)
+static	void	ps_push_to_non_null(t_list **source, t_list **destination)
 {
-	long	*number;
-	t_list	*current_node;
+	t_list	*src_next;
 
-	if (!head || !head->data)
-	{
-		ft_printf("{NULL}\n");
+	src_next = (*source)->next_node;
+	(*source)->next_node = (*destination);
+	(*destination) = (*source);
+	(*source) = src_next;
+}
+
+static	void	ps_push_to_null(t_list **source, t_list **destination)
+{
+	t_list	*src_next;
+
+	src_next = (*source)->next_node;
+	(*source)->next_node = NULL;
+	(*destination) = (*source);
+	(*source) = src_next;
+}
+
+void	ps_push(t_list **source, t_list **destination)
+{
+	if (!source || !destination || !*source || !(*source)->data)
 		return ;
-	}
-	current_node = head;
-	ft_printf("{");
-	while (current_node)
-	{
-		number = (long *) current_node->data;
-		if (number)
-			ft_printf("%l", *number);
-		else
-			ft_printf("NULL");
-		if (current_node->next_node)
-			ft_printf(", ");
-		current_node = current_node->next_node;
-	}
-	ft_printf("}\n");
+	if (!*destination)
+		ps_push_to_null(source, destination);
+	else
+		ps_push_to_non_null(source, destination);
 }

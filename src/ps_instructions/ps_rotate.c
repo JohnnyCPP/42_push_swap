@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ps_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
+/*   Created: 2024/09/29 08:34:07 by jonnavar          #+#    #+#             */
+/*   Updated: 2024/09/29 08:46:34 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isspace(const char character)
+void	ps_rotate(t_list **head)
 {
-	if (character == ' ' || ('\t' <= character && character <= '\r'))
-		return (1);
-	return (0);
+	t_list	*second_node;
+	t_list	*current_node;
+
+	if (!head || !*head || !(*head)->next_node)
+		return ;
+	second_node = (*head)->next_node;
+	current_node = *head;
+	while ((current_node)->next_node)
+		current_node = current_node->next_node;
+	(*head)->next_node = NULL;
+	current_node->next_node = *head;
+	*head = second_node;
 }

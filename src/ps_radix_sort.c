@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_stack_print.c                                   :+:      :+:    :+:   */
+/*   ps_radix_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,28 +11,23 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_stack_print(t_list *head)
+void	ps_radix_sort(t_list **stack_a, t_list **stack_b)
 {
-	long	*number;
-	t_list	*current_node;
+	// TODO: implement a radix_sort function
+	//
+	// I need to work with binary representations, so I need to develop 
+	// a function that accepts a "long" and returns the binary representation 
+	// of a number as a string
+	//
+	// I need a function that accepts a "long" and returns the specific bit 
+	// of that value as an integer
+	char	*binary_value;
 
-	if (!head || !head->data)
-	{
-		ft_printf("{NULL}\n");
-		return ;
-	}
-	current_node = head;
-	ft_printf("{");
-	while (current_node)
-	{
-		number = (long *) current_node->data;
-		if (number)
-			ft_printf("%l", *number);
-		else
-			ft_printf("NULL");
-		if (current_node->next_node)
-			ft_printf(", ");
-		current_node = current_node->next_node;
-	}
-	ft_printf("}\n");
+	(void) stack_a;
+	(void) stack_b;
+	binary_value = ft_to_binary(2);
+	char	*ptr_to_b = ft_split_binary_copy(binary_value);
+	ft_printf("Binary:\"%s\"\n", ptr_to_b);
+	free(binary_value);
+	free(ptr_to_b);
 }

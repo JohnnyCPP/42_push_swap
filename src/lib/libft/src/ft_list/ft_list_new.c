@@ -19,5 +19,6 @@ t_list	*ft_list_new(void *data)
 	if (!pointer)
 		return ((void *) 0);
 	pointer->data = data;
+	pointer->next_node = NULL;
 	return (pointer);
 }

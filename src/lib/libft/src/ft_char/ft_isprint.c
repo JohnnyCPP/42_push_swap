@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(char character)
+int	ft_isprint(const char character)
 {
 	if (' ' <= character && character <= '~')
 		return (1);

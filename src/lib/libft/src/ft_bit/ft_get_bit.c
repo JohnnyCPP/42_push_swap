@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_get_bit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,9 +11,10 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isspace(const char character)
+int	ft_get_bit(const long number, int bit_position)
 {
-	if (character == ' ' || ('\t' <= character && character <= '\r'))
-		return (1);
-	return (0);
+	int	bit;
+
+	bit = (number >> bit_position) & 1;
+	return (bit);
 }

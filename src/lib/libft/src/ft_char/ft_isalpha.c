@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isalpha(char character)
+int	ft_isalpha(const char character)
 {
 	if (ft_isupper(character) || ft_islower(character))
 		return (1);

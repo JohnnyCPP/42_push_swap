@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isupper(char character)
+int	ft_isupper(const char character)
 {
 	if ('A' <= character && character <= 'Z')
 		return (1);

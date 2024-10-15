@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_isbinarystr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,9 +11,15 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isspace(const char character)
+int	ft_isbinarystr(const char *character)
 {
-	if (character == ' ' || ('\t' <= character && character <= '\r'))
-		return (1);
-	return (0);
+	if (!character)
+		return (0);
+	while (*character)
+	{
+		if (!ft_isbinary(*character))
+			return (0);
+		character ++;
+	}
+	return (1);
 }

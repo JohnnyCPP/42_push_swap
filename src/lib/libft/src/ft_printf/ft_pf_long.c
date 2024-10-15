@@ -22,4 +22,5 @@ void	ft_pf_long(va_list args, int *count)
 	ft_putstr_fd(string, 1);
 	length = ft_strlen(string);
 	*count += length;
+	free(string);
 }

@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ps_instruction_rrr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 17:55:21 by jonnavar          #+#    #+#             */
-/*   Updated: 2023/10/02 17:56:00 by jonnavar         ###   ########.fr       */
+/*   Created: 2024/09/29 08:34:07 by jonnavar          #+#    #+#             */
+/*   Updated: 2024/09/29 08:46:34 by jonnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isspace(const char character)
+void	ps_instruction_rrr(t_list **stack_a, t_list **stack_b)
 {
-	if (character == ' ' || ('\t' <= character && character <= '\r'))
-		return (1);
-	return (0);
+	ft_printf("rrr\n");
+	ps_reverse_rotate(stack_a);
+	ps_reverse_rotate(stack_b);
 }

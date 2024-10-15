@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_islower(char character)
+int	ft_islower(const char character)
 {
 	if ('a' <= character && character <= 'z')
 		return (1);

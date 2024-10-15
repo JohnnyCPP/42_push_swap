@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_issign(char character)
+int	ft_issign(const char character)
 {
 	if (character == '+' || character == '-')
 		return (1);

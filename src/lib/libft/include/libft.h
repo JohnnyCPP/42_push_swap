@@ -35,6 +35,7 @@
 // @note Required for gnl.
 # define LAST_FD 256
 # define BUFFER_SIZE 1
+# define BITS_IN_LONG (sizeof(long) * 8)
 
 /**
  * @brief Structure representing a node in a linked list.
@@ -55,7 +56,7 @@ typedef struct s_list
  *
  * @return 1 if it's upper case, 0 if it's not.
  */
-int		ft_isupper(char character);
+int		ft_isupper(const char character);
 
 /**
  * @brief Checks if a character is lower case.
@@ -64,7 +65,7 @@ int		ft_isupper(char character);
  *
  * @return 1 if it's lower case, 0 if it's not.
  */
-int		ft_islower(char character);
+int		ft_islower(const char character);
 
 /**
  * @brief Checks if a character is alphabetic.
@@ -73,7 +74,7 @@ int		ft_islower(char character);
  *
  * @return 1 if it's alphabetic, 0 if it's not.
  */
-int		ft_isalpha(char character);
+int		ft_isalpha(const char character);
 
 /**
  * @brief Checks if a character is a digit.
@@ -82,7 +83,7 @@ int		ft_isalpha(char character);
  *
  * @return 1 if it's a digit, 0 if it's not.
  */
-int		ft_isdigit(char character);
+int		ft_isdigit(const char character);
 
 /**
  * @brief Checks if a character is alphanumeric.
@@ -91,7 +92,7 @@ int		ft_isdigit(char character);
  *
  * @return 1 if it's alphanumeric, 0 if it's not.
  */
-int		ft_isalnum(char character);
+int		ft_isalnum(const char character);
 
 /**
  * @brief Checks if a character is ASCII.
@@ -100,7 +101,7 @@ int		ft_isalnum(char character);
  *
  * @return 1 if it's ASCII, 0 if it's not.
  */
-int		ft_isascii(char character);
+int		ft_isascii(const int character);
 
 /**
  * @brief Checks if a character is printable.
@@ -109,7 +110,7 @@ int		ft_isascii(char character);
  *
  * @return 1 if it's printable, 0 if it's not.
  */
-int		ft_isprint(char c);
+int		ft_isprint(const char character);
 
 /**
  * @brief Checks if a character is a plus or minus sign.
@@ -118,7 +119,7 @@ int		ft_isprint(char c);
  *
  * @return 1 if it's a sign, 0 if it's not.
  */
-int		ft_issign(char c);
+int		ft_issign(const char character);
 
 /**
  * @brief Checks if a character is a space.
@@ -127,7 +128,30 @@ int		ft_issign(char c);
  *
  * @return 1 if it's a space, 0 if it's not.
  */
-int		ft_isspace(char c);
+int		ft_isspace(const char character);
+
+/**
+ * @brief Checks if a character is a 0 or a 1.
+ *
+ * @param character The character.
+ *
+ * @return 1 if it's binary, 0 if it's not.
+ */
+int		ft_isbinary(const char character);
+
+/**
+ * @brief Checks if a string is a binary representation.
+ *
+ * @param character A pointer to the first character of the string.
+ *
+ * @return 1 if it's a binary string, 0 if it's not.
+ *
+ * The string is expected to be null-terminated.
+ *
+ * This function iterates for each character of the null-terminated string, 
+ * calling "ft_isbinary" for each of them.
+ */
+int		ft_isbinarystr(const char *character);
 
 /**
  * @brief Calculates the length of a string.
@@ -701,6 +725,76 @@ void	ft_list_iterate(t_list *list, void (*function)(void *));
  * is cleared using the "d" function to free the memory of each node's data.
  */
 t_list	*ft_list_map(t_list *list, void *(*f)(void *), void (*d)(void *));
+
+/**
+ * @brief Gets a bit from the binary representation of a number.
+ *
+ * @param number The number whose bit will be extracted.
+ * @param bit_position The position of the bit, starting from the right (0-n).
+ *
+ * @return A 0 or a 1, depending on the value of the bit.
+ *
+ * This function shifts to the right the bits of "number" 
+ * by an amount of "bit_position" and returns the bit value using a bit mask.
+ *
+ * This function uses bitwise operators to work with individual bits.
+ */
+int		ft_get_bit(long number, int bit_position);
+
+/**
+ * @brief Gets the binary representation of a number as a string.
+ *
+ * @param number The number whose binary representation will be obtained.
+ *
+ * @return A null-terminated string containing a binary representation.
+ *
+ * This function allocates memory for a new string of "BITS_IN_LONG + 1" size.
+ *
+ * If the memory allocation fails, it returns NULL.
+ *
+ * This function iterates for each bit in the binary representation of the 
+ * number and introduces each bit in the string using bitwise operators.
+ *
+ * The returned string is null-terminated.
+ */
+char	*ft_to_binary(const long number);
+
+/**
+ * @brief Adds spaces between nibbles in a dynamically allocated string.
+ *
+ * @param binary A double pointer to a dynamically allocated string.
+ *
+ * @return 1 if the split was successful, 0 otherwise.
+ *
+ * This function allocates memory for a new string, adds the binary 
+ * representation of the passed string to it, frees the passed string, 
+ * and changes the double pointer to point to the newly allocated string.
+ *
+ * This function expects a dynamically allocated string, and 
+ * frees it at the end.
+ *
+ * It does nothing if the double pointer is null, or if the string 
+ * is not a binary representation.
+ *
+ * Both the "binary" and the returned strings are considered
+ * to be null-terminated.
+ */
+int		ft_split_binary_free(char **binary);
+
+/**
+ * @brief Copies and returns a formatted binary string.
+ *
+ * @param A pointer to the binary representation to be formatted.
+ *
+ * @return A pointer to the new formatted binary representation.
+ *
+ * This function dynamically allocates memory for a new string, 
+ * fills it with the contents of "binary" adding spaces between nibbles.
+ *
+ * Both the "binary" string and the returned string are 
+ * considered to be null-terminated.
+ */
+char	*ft_split_binary_copy(const char *binary);
 
 // @note Prototypes of printf start here.
 

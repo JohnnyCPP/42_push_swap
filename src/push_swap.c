@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static	void	ps_print(t_list *stack_a, t_list *stack_b)
+{
+	ft_printf("Stack_A:");
+	ps_stack_print(stack_a);
+	ft_printf("Stack_B:");
+	ps_stack_print(stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	int		is_valid;
@@ -26,18 +34,16 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	stack_a = ps_init_stack_a(argc, argv);
-	stack_b = ft_list_new(NULL);
-	ft_printf("Stack_A:");
-	ps_stack_print(stack_a);
-	ft_printf("Stack_B:");
-	ps_stack_print(stack_b);
+	stack_b = NULL;
 	is_valid = !ps_contains_duplicates(stack_a);
 	if (!is_valid)
 	{
 		ps_print_error();
 		return (1);
 	}
-	// develop functions to manipulate stacks
-	// implement a radix_sort() function
+	ps_print(stack_a, stack_b);
+	ps_radix_sort(&stack_a, &stack_b);
+	ps_print(stack_a, stack_b);
+	ps_terminate_stack_a(&stack_a);
 	return (0);
 }

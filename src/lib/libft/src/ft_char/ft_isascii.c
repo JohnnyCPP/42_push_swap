@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(char character)
+int	ft_isascii(const int character)
 {
-	if ((unsigned char) character == character)
+	if ('\0' <= character && character <= '\x7F')
 		return (1);
 	return (0);
 }
