@@ -143,7 +143,7 @@ ${RUN_MOCK_VALUES}: ${NAME}
 
 ${RUN_COUNT_LINES}: ${NAME}
 	@$(eval MOCK_VALUES=$(shell seq 1 100 | sort -R | tail -n 500 | tr '\n' ' '))
-	@./${NAME} ${MOCK_VALUES} ${COUNT_LINES}
+	@./${NAME} 2 1 3 6 5 8 ${COUNT_LINES}
 
 
 # library rules

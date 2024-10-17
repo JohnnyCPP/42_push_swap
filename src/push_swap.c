@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	is_valid = ps_is_valid_input(argc, argv);
-	threshold = 50;
+	threshold = 100;
 	if (!is_valid)
 		return (ps_print_error());
 	stack_a = ps_init_stack_a(argc, argv);

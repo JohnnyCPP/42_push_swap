@@ -11,11 +11,11 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static	void	ps_stack_pb(const long number)
+static	void	ps_stack_pb(const int number)
 {
 	char	*binary_number;
 
-	binary_number = ft_to_binary(number);
+	binary_number = ft_to_binary_int(number);
 	if (ft_split_binary_free(&binary_number))
 	{
 		ft_printf("%s", binary_number);
@@ -25,7 +25,7 @@ static	void	ps_stack_pb(const long number)
 
 void	ps_stack_print_binary(t_list *head)
 {
-	long	*number;
+	int		*number;
 	t_list	*current_node;
 
 	if (!head || !head->data)
@@ -37,7 +37,7 @@ void	ps_stack_print_binary(t_list *head)
 	ft_printf("{\n");
 	while (current_node)
 	{
-		number = (long *) current_node->data;
+		number = (int *) current_node->data;
 		if (number)
 			ps_stack_pb(*number);
 		else
@@ -53,7 +53,7 @@ void	ps_stack_print_binary(t_list *head)
 
 void	ps_stack_print(t_list *head)
 {
-	long	*number;
+	int		*number;
 	t_list	*current_node;
 
 	if (!head || !head->data)
@@ -65,9 +65,9 @@ void	ps_stack_print(t_list *head)
 	ft_printf("{");
 	while (current_node)
 	{
-		number = (long *) current_node->data;
+		number = (int *) current_node->data;
 		if (number)
-			ft_printf("%l", *number);
+			ft_printf("%i", *number);
 		else
 			ft_printf("NULL");
 		if (current_node->next_node)

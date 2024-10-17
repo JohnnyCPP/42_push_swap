@@ -36,6 +36,7 @@
 # define LAST_FD 256
 # define BUFFER_SIZE 1
 # define BITS_IN_LONG 64
+# define BITS_IN_INT 32
 
 /**
  * @brief Structure representing a node in a linked list.
@@ -748,6 +749,24 @@ int		ft_get_bit(const long number, const int bit_position);
  *
  * @return A null-terminated string containing a binary representation.
  *
+ * This function allocates memory for a new string of "BITS_IN_INT + 1" size.
+ *
+ * If the memory allocation fails, it returns NULL.
+ *
+ * This function iterates for each bit in the binary representation of the 
+ * number and introduces each bit in the string using bitwise operators.
+ *
+ * The returned string is null-terminated.
+ */
+char	*ft_to_binary_int(const int number);
+
+/**
+ * @brief Gets the binary representation of a number as a string.
+ *
+ * @param number The number whose binary representation will be obtained.
+ *
+ * @return A null-terminated string containing a binary representation.
+ *
  * This function allocates memory for a new string of "BITS_IN_LONG + 1" size.
  *
  * If the memory allocation fails, it returns NULL.
@@ -757,7 +776,7 @@ int		ft_get_bit(const long number, const int bit_position);
  *
  * The returned string is null-terminated.
  */
-char	*ft_to_binary(const long number);
+char	*ft_to_binary_long(const long number);
 
 /**
  * @brief Adds spaces between nibbles in a dynamically allocated string.

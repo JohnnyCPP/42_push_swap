@@ -14,8 +14,8 @@
 static	int	ps_isort_is_greater(const int i_of_val, t_list **stack_a)
 {
 	t_list	*head;
-	long	*last_value;
-	long	*current_value;
+	int		*last_value;
+	int		*current_value;
 	int		i_current_node;
 
 	head = *stack_a;
@@ -26,11 +26,11 @@ static	int	ps_isort_is_greater(const int i_of_val, t_list **stack_a)
 		if (last_value)
 		{
 			last_value = current_value;
-			current_value = (long *) head->data;
+			current_value = (int *) head->data;
 		}
 		else
 		{
-			current_value = (long *) head->data;
+			current_value = (int *) head->data;
 			last_value = current_value;
 		}
 		head = head->next_node;
@@ -43,15 +43,15 @@ static	int	ps_isort_is_greater(const int i_of_val, t_list **stack_a)
 
 static	void	ps_isort_rev(int moves, t_list **stack_a, t_list **stack_b)
 {
-	long	*a_number;
-	long	*b_number;
-	int		reverse_moves;
+	int	*a_number;
+	int	*b_number;
+	int	reverse_moves;
 
 	reverse_moves = 0;
 	while (moves)
 	{
-		a_number = (long *) (*stack_a)->data;
-		b_number = (long *) (*stack_b)->data;
+		a_number = (int *) (*stack_a)->data;
+		b_number = (int *) (*stack_b)->data;
 		if (*b_number < *a_number)
 		{
 			ps_instruction_pa(stack_b, stack_a);
@@ -71,8 +71,8 @@ static	void	ps_isort_rev(int moves, t_list **stack_a, t_list **stack_b)
 
 void	ps_isort_sort(t_list **stack_a, t_list **stack_b, int position)
 {
-	int		is_greater;
-	int		moves;
+	int	is_greater;
+	int	moves;
 
 	is_greater = ps_isort_is_greater(position, stack_a);
 	if (is_greater)
@@ -95,11 +95,11 @@ void	ps_isort_sort(t_list **stack_a, t_list **stack_b, int position)
 
 void	ps_isort_sort_two(t_list **stack_a)
 {
-	long	*head_number;
-	long	*second_number;
+	int	*head_number;
+	int	*second_number;
 
-	head_number = (long *) (*stack_a)->data;
-	second_number = (long *) (*stack_a)->next_node->data;
+	head_number = (int *) (*stack_a)->data;
+	second_number = (int *) (*stack_a)->next_node->data;
 	if (*second_number < *head_number)
 		ps_instruction_sa(stack_a);
 }

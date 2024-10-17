@@ -19,14 +19,14 @@ static	void	ps_merge(t_list **stack_b, t_list **stack_a)
 
 static	void	ps_arrange(t_list **stack_a, t_list **stack_b, int *sig, int b)
 {
-	long	*number;
-	int		a_length;
-	int		bit;
+	int	*number;
+	int	a_length;
+	int	bit;
 
 	a_length = ft_list_size(*stack_a);
 	while (a_length)
 	{
-		number = (long *) (*stack_a)->data;
+		number = (int *) (*stack_a)->data;
 		bit = ft_get_bit(*number, *sig);
 		if (bit == b)
 			ps_instruction_ra(stack_a);
@@ -48,7 +48,7 @@ void	ps_radix_sort(t_list **stack_a, t_list **stack_b)
 	int		significance;
 
 	significance = 0;
-	while (significance < BITS_IN_LONG - 1)
+	while (significance < BITS_IN_INT - 1)
 		ps_arrange_and_merge(stack_a, stack_b, &significance, 1);
 	ps_arrange_and_merge(stack_a, stack_b, &significance, 0);
 }
