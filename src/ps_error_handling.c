@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_print_error(void)
+int	ps_print_error(void)
 {
 	ft_putendl_fd("Error", 2);
+	return (1);
 }

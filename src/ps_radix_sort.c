@@ -11,17 +11,44 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
+static	void	ps_merge(t_list **stack_b, t_list **stack_a)
+{
+	while (*stack_b)
+		ps_instruction_pa(stack_b, stack_a);
+}
+
+static	void	ps_arrange(t_list **stack_a, t_list **stack_b, int *sig, int b)
+{
+	long	*number;
+	int		a_length;
+	int		bit;
+
+	a_length = ft_list_size(*stack_a);
+	while (a_length)
+	{
+		number = (long *) (*stack_a)->data;
+		bit = ft_get_bit(*number, *sig);
+		if (bit == b)
+			ps_instruction_ra(stack_a);
+		else
+			ps_instruction_pb(stack_a, stack_b);
+		a_length --;
+	}
+	(*sig)++;
+}
+
+static	void	ps_arrange_and_merge(t_list **s_a, t_list **s_b, int *s, int b)
+{
+	ps_arrange(s_a, s_b, s, b);
+	ps_merge(s_b, s_a);
+}
+
 void	ps_radix_sort(t_list **stack_a, t_list **stack_b)
 {
-	// TODO: implement a radix_sort function
-	//
-	// I need to work with binary representations, so I need to develop 
-	// a function that accepts a "long" and returns the binary representation 
-	// of a number as a string
-	//
-	// I need a function that accepts a "long" and returns the specific bit 
-	// of that value as an integer
+	int		significance;
 
-	(void) stack_a;
-	(void) stack_b;
+	significance = 0;
+	while (significance < BITS_IN_LONG - 1)
+		ps_arrange_and_merge(stack_a, stack_b, &significance, 1);
+	ps_arrange_and_merge(stack_a, stack_b, &significance, 0);
 }

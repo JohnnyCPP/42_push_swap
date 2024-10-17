@@ -19,6 +19,8 @@ void	ft_pf_int(va_list args, int *count)
 
 	value = va_arg(args, int);
 	string = ft_itoa(value);
+	if (!string)
+		return ;
 	ft_putstr_fd(string, 1);
 	length = ft_strlen(string);
 	*count += length;

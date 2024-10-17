@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_get_bit(const long number, int bit_position)
+int	ft_get_bit(const long number, const int bit_position)
 {
 	int	bit;
 

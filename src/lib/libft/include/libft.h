@@ -35,7 +35,7 @@
 // @note Required for gnl.
 # define LAST_FD 256
 # define BUFFER_SIZE 1
-# define BITS_IN_LONG (sizeof(long) * 8)
+# define BITS_IN_LONG 64
 
 /**
  * @brief Structure representing a node in a linked list.
@@ -739,7 +739,7 @@ t_list	*ft_list_map(t_list *list, void *(*f)(void *), void (*d)(void *));
  *
  * This function uses bitwise operators to work with individual bits.
  */
-int		ft_get_bit(long number, int bit_position);
+int		ft_get_bit(const long number, const int bit_position);
 
 /**
  * @brief Gets the binary representation of a number as a string.

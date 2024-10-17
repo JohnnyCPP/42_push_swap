@@ -11,43 +11,31 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static	void	ps_print(t_list *stack_a, t_list *stack_b)
-{
-	ft_printf("Stack_A:");
-	ps_stack_print(stack_a);
-	ft_printf("Stack_B:");
-	ps_stack_print(stack_b);
-}
-
 int	main(int argc, char **argv)
 {
-	int		is_valid;
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		is_valid;
+	int		threshold;
 
 	if (argc < 2)
 		return (0);
 	is_valid = ps_is_valid_input(argc, argv);
+	threshold = 50;
 	if (!is_valid)
-	{
-		ps_print_error();
-		return (1);
-	}
+		return (ps_print_error());
 	stack_a = ps_init_stack_a(argc, argv);
 	stack_b = NULL;
 	is_valid = !ps_contains_duplicates(stack_a);
 	if (!is_valid)
 	{
 		ps_terminate_stack_a(&stack_a);
-		ps_print_error();
-		return (1);
+		return (ps_print_error());
 	}
-	ft_printf("Binary representation of stack_a: ");
-	ps_stack_print_binary(stack_a);
-	ps_print(stack_a, stack_b);
-	ft_printf("Running radix sort...\n");
-	ps_radix_sort(&stack_a, &stack_b);
-	ps_print(stack_a, stack_b);
+	if (argc > 2 && argc <= (threshold + 1))
+		ps_insertion_sort(&stack_a, &stack_b);
+	else
+		ps_radix_sort(&stack_a, &stack_b);
 	ps_terminate_stack_a(&stack_a);
 	return (0);
 }

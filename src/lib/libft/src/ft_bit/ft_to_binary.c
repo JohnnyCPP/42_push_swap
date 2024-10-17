@@ -18,7 +18,7 @@ char	*ft_to_binary(const long number)
 	unsigned long	bit_index;
 	int				bit;
 
-	binary_string = (char *) ft_calloc(BITS_IN_LONG + 1, 1);
+	binary_string = (char *) ft_calloc(BITS_IN_LONG + 1, sizeof(char));
 	if (!binary_string)
 		return (NULL);
 	copy_of_number = number;

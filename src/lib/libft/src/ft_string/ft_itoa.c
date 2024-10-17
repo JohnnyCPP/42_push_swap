@@ -11,31 +11,36 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-static	char	*ft_convert(int index, int sign, long value)
+static	char	*ft_convert(int length, int sign, long absolute_value)
 {
 	char	*pointer;
 
-	pointer = (char *) ft_calloc(index + 1, sizeof(char));
+	pointer = (char *) ft_calloc(length + 1, sizeof(char));
 	if (!pointer)
-		return ((void *) 0);
+		return (NULL);
 	if (sign < 0)
 		pointer[0] = '-';
-	index --;
-	while (value)
+	length --;
+	while (absolute_value)
 	{
-		pointer[index --] = (value % 10) + 48;
-		value /= 10;
+		pointer[length] = (absolute_value % 10) + '0';
+		absolute_value /= 10;
+		length --;
 	}
 	return (pointer);
 }
 
 static	int	ft_itoa_len(int value)
 {
-	int	auxiliar;
-	int	length;
+	int		length;
+	long	auxiliar;
 
-	auxiliar = value;
 	length = 0;
+	if (value <= 0)
+		length ++;
+	auxiliar = value;
+	if (auxiliar < 0)
+		auxiliar *= -1;
 	while (auxiliar)
 	{
 		auxiliar /= 10;
@@ -44,37 +49,26 @@ static	int	ft_itoa_len(int value)
 	return (length);
 }
 
-static	char	*ft_handle_min(void)
-{
-	int		index;
-
-	index = ft_itoa_len(INT_MAX);
-	return (ft_convert(index + 1, -1, (unsigned int) INT_MAX + 1));
-}
-
 char	*ft_itoa(int value)
 {
-	int		index;
+	long	absolute_value;
+	int		length;
 	int		sign;
-	char	*pointer;
 
 	if (!value)
-	{
-		pointer = (char *) ft_calloc(1, sizeof(char));
-		if (!pointer)
-			return ((void *) 0);
-		pointer[0] = '0';
-		return (pointer);
-	}
+		return (ft_strdup("0"));
 	else if (value == INT_MIN)
-		return (ft_handle_min());
-	index = ft_itoa_len(value);
-	sign = 1;
+		return (ft_strdup("-2147483648"));
+	length = ft_itoa_len(value);
 	if (value < 0)
 	{
-		index ++;
-		sign *= -1;
-		value *= -1;
+		sign = -1;
+		absolute_value = -value;
 	}
-	return (ft_convert(index, sign, value));
+	else
+	{
+		sign = 1;
+		absolute_value = value;
+	}
+	return (ft_convert(length, sign, absolute_value));
 }

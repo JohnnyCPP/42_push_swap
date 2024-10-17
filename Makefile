@@ -35,6 +35,7 @@ CFLAGS			= -Wall -Wextra -Werror
 DEBUG_SYMBOLS	= -g3
 SANITIZE_FLAGS	= -fsanitize=address ${DEBUG_SYMBOLS}
 VALGRIND_FLAGS	= --track-origins=yes -s --leak-check=full
+COUNT_LINES		= | wc -l
 INCLUDE_LIBFT	= -I ${LIBFT_INC_PATH}
 INCLUDE			= -I ${INCLUDES_PATH} ${INCLUDE_LIBFT}
 MAKE_LIB		= make -sC
@@ -48,7 +49,8 @@ RE				= re
 CC_SANITIZER	= sanitize
 VALGRIND		= valgrind
 RUN_MOCK_VALUES	= mock_run
-VALGRIND_ARGS	= 1 2 3 4 5
+RUN_COUNT_LINES = count_run
+VALGRIND_ARGS	= 9 -4 2 7 -5 0
 LIB_DELETE		= lib_${DELETE}
 LIB_CLEAN		= lib_${CLEAN}
 LIB_FCLEAN		= lib_${FCLEAN}
@@ -134,9 +136,14 @@ ${VALGRIND}: ${NAME}
 
 
 ${RUN_MOCK_VALUES}: ${NAME}
-	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
+	@$(eval MOCK_VALUES=$(shell seq -1 5 | sort -R | tail -n 500 | tr '\n' ' '))
 	@echo "Running push_swap with a list of mock values..."
 	@./${NAME} ${MOCK_VALUES}
+
+
+${RUN_COUNT_LINES}: ${NAME}
+	@$(eval MOCK_VALUES=$(shell seq 1 100 | sort -R | tail -n 500 | tr '\n' ' '))
+	@./${NAME} ${MOCK_VALUES} ${COUNT_LINES}
 
 
 # library rules

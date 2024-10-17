@@ -48,16 +48,9 @@ char	*ft_ltoa(long value)
 {
 	int		index;
 	int		sign;
-	char	*pointer;
 
 	if (!value)
-	{
-		pointer = (char *) ft_calloc(1, sizeof(char));
-		if (!pointer)
-			return ((void *) 0);
-		pointer[0] = '0';
-		return (pointer);
-	}
+		return (ft_strdup("0"));
 	else if (value == LONG_MIN)
 		return (ft_strdup("-9223372036854775808"));
 	index = ft_ltoa_len(value);

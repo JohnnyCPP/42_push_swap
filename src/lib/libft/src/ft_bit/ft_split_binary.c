@@ -44,7 +44,7 @@ int	ft_split_binary_free(char **binary)
 	if (!ft_isbinarystr(*binary) || binary_length % 4 != 0)
 		return (0);
 	nibbles = binary_length / 4;
-	result = (char *) ft_calloc(binary_length + nibbles, 1);
+	result = (char *) ft_calloc(binary_length + nibbles, sizeof(char));
 	if (!result)
 		return (0);
 	ft_bit_split(*binary, result, binary_length);
@@ -65,7 +65,7 @@ char	*ft_split_binary_copy(const char *binary)
 	if (!ft_isbinarystr(binary) || binary_length % 4 != 0)
 		return (NULL);
 	nibbles = binary_length / 4;
-	result = (char *) ft_calloc(binary_length + nibbles, 1);
+	result = (char *) ft_calloc(binary_length + nibbles, sizeof(char));
 	if (!result)
 		return (NULL);
 	ft_bit_split(binary, result, binary_length);

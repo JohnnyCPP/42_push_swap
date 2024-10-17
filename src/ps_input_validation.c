@@ -88,7 +88,7 @@ int	ps_is_valid_input(int argc, char **argv)
 			break ;
 		is_valid = !ft_loverflow(arg);
 		if (!is_valid)
-			break;
+			break ;
 		arg_index ++;
 	}
 	return (is_valid);

@@ -16,8 +16,10 @@
 
 /**
  * @brief Prints "Error" followed by a newline character.
+ *
+ * @return Always returns 1, which is meant to be "ended with errors".
  */
-void	ps_print_error(void);
+int		ps_print_error(void);
 
 /**
  * @brief Checks if the user input is correct.
@@ -272,8 +274,60 @@ void	ps_instruction_rrb(t_list **stack_b);
 void	ps_instruction_rrr(t_list **stack_a, t_list **stack_b);
 
 /**
+ * @brief Sorts a random list of numbers by each individual bit.
  *
+ * @param stack_a A linked list whose nodes are to be sorted.
+ * @param stack_b A linked list whose nodes are to be sorted.
+ *
+ * This function implements a Radix Sort algorithm of type LSb.
+ *
+ * The Least Significant Bit (LSb) Radix Sort, makes decisions based on the 
+ * value of individual bits. It starts from the Least Significant Bit 
+ * (the right-most bit), and applies the same instructions to the 
+ * left bits positioned relative to the initial bit.
+ *
+ * In each iteration, groups all values in two stacks: the values whose 
+ * current bit is 0, and the values whose current bit is 1.
+ *
+ * All values are compared by the bit with the same significance in each 
+ * iteration.
+ *
+ * When the function ends, values in "stack_a" are sorted, and no 
+ * dynamic memory is freed.
+ *
+ * This function expects two double pointers to dynamically allocated 
+ * linked lists of type "t_list".
+ *
+ * When the function starts, it expects all values to be in "stack_a", 
+ * while "stack_b" is meant to be an empty linked list, to help in 
+ * the sorting process.
  */
 void	ps_radix_sort(t_list **stack_a, t_list **stack_b);
+
+/**
+ * @brief Implements a simple sorting algorithm for small linked lists.
+ *
+ * @param stack_a A linked list with a random list of numbers.
+ * @param stack_b An empty linked list, to help in the sorting process.
+ */
+void	ps_insertion_sort(t_list **stack_a, t_list **stack_b);
+
+/**
+ * @brief Sorts the first two elements of a linked list.
+ *
+ * @param stack_a A linked list whose elements will be sorted.
+ */
+void	ps_isort_sort_two(t_list **stack_a);
+
+/**
+ * @brief Sorts the "position" element of a linked list.
+ *
+ * @param stack_a A linked list whose element will be sorted.
+ * @param stack_b A helper list to support the sorting process.
+ * @param position The index of the element to sort.
+ *
+ * This function sorts a single element of a linked list.
+ */
+void	ps_isort_sort(t_list **stack_a, t_list **stack_b, int position);
 
 #endif
