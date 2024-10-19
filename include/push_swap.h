@@ -40,6 +40,17 @@ typedef	struct	s_stack
 }	t_stack;
 
 /**
+ * @brief Iterates over a stack and prints it on the stdout.
+ *
+ * @param stack The stack to print.
+ *
+ * If the stack is null, prints "NULL".
+ *
+ * If the head of the stack is null, prints "{NULL}".
+ */
+void	ps_stack_print(t_stack *stack);
+
+/**
  * @brief Prints "Error" followed by a newline character.
  *
  * @return Always returns 1, which is meant to be "ended with errors".
