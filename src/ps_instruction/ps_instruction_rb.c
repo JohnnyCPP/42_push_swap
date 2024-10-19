@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_rrb.c                               :+:      :+:    :+:   */
+/*   ps_instruction_rb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_rrb(t_list **stack_b)
+void	ps_instruction_rb(t_stack *stack_b)
 {
-	ft_printf("rrb\n");
-	ps_reverse_rotate(stack_b);
+	ft_printf("rb\n");
+	ps_rotate(stack_b);
 }

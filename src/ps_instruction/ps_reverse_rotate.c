@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_error_handling.c                                :+:      :+:    :+:   */
+/*   ps_reverse_rotate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ps_print_error(void)
+void	ps_reverse_rotate(t_stack *stack)
 {
-	ft_putendl_fd("Error", 2);
-	return (1);
-}
+	t_node	*next_node;
+	t_node	*current_node;
 
-int	ps_duplicated_numbers(int *numbers)
-{
-	free(numbers);
-	return (ps_print_error());
+	if (stack->head && stack->head->next)
+	{
+		current_node = stack->head;
+		while (current_node->next->next)
+			current_node = current_node->next;
+		next_node = current_node->next;
+		current_node->next = NULL;
+		next_node->next = stack->head;
+		stack->head = next_node;
+	}
 }

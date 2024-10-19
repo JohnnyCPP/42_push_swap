@@ -11,31 +11,28 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	main(const int argc, const char **argv)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
+	t_stack	stack_a;
+	t_stack	stack_b;
 	int		is_valid;
-	int		threshold;
+	int		numbers_amount;
+	int		*numbers;
 
 	if (argc < 2)
 		return (0);
 	is_valid = ps_is_valid_input(argc, argv);
-	threshold = 100;
 	if (!is_valid)
 		return (ps_print_error());
-	stack_a = ps_init_stack_a(argc, argv);
-	stack_b = NULL;
-	is_valid = !ps_contains_duplicates(stack_a);
+	numbers_amount = argc - 1;
+	numbers = ps_args_to_numbers(argc, argv);
+	is_valid = !ps_contains_duplicates(numbers, numbers_amount);
 	if (!is_valid)
-	{
-		ps_terminate_stack_a(&stack_a);
-		return (ps_print_error());
-	}
-	if (argc > 2 && argc <= (threshold + 1))
-		ps_insertion_sort(&stack_a, &stack_b);
-	else
-		ps_radix_sort(&stack_a, &stack_b);
-	ps_terminate_stack_a(&stack_a);
+		return (ps_duplicated_numbers(numbers));
+	ps_init_stacks(&stack_a, &stack_b, numbers, numbers_amount);
+	ft_printf("Stacks initialized\n");
+	ps_stack_sort(&stack_a, &stack_b, numbers_amount);
+	ps_stack_clear(&stack_a);
+	free(numbers);
 	return (0);
 }

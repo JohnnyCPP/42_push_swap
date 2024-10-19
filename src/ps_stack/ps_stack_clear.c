@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_ra.c                                :+:      :+:    :+:   */
+/*   ps_stack_clear.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_ra(t_list **stack_a)
+void	ps_stack_clear(t_stack *stack)
 {
-	ft_printf("ra\n");
-	ps_rotate(stack_a);
+	while (stack->size)
+		ps_stack_pop(stack);
 }

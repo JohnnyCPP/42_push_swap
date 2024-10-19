@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_push.c                                          :+:      :+:    :+:   */
+/*   ps_args_to_numbers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,32 +11,21 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static	void	ps_push_to_non_null(t_list **source, t_list **destination)
+int	*ps_args_to_numbers(const int argc, const char **argv)
 {
-	t_list	*src_next;
+	const char	*argument;
+	int			*numbers;
+	int			iterator;
 
-	src_next = (*source)->next_node;
-	(*source)->next_node = (*destination);
-	(*destination) = (*source);
-	(*source) = src_next;
-}
-
-static	void	ps_push_to_null(t_list **source, t_list **destination)
-{
-	t_list	*src_next;
-
-	src_next = (*source)->next_node;
-	(*source)->next_node = NULL;
-	(*destination) = (*source);
-	(*source) = src_next;
-}
-
-void	ps_push(t_list **source, t_list **destination)
-{
-	if (!source || !destination || !*source || !(*source)->data)
-		return ;
-	if (!*destination)
-		ps_push_to_null(source, destination);
-	else
-		ps_push_to_non_null(source, destination);
+	numbers = (int *) ft_calloc(argc - 1, sizeof(int));
+	if (!numbers)
+		return (NULL);
+	iterator = 0;
+	while (iterator < argc - 1)
+	{
+		argument = *(argv + iterator + 1);
+		numbers[iterator] = ft_atoi(argument);
+		iterator ++;
+	}
+	return (numbers);
 }

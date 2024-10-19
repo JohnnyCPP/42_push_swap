@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_reverse_rotate.c                                :+:      :+:    :+:   */
+/*   ps_instruction_pb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,18 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_reverse_rotate(t_list **head)
+void	ps_instruction_pb(t_stack *stack_a, t_stack *stack_b)
 {
-	t_list	*current_node;
-	t_list	*last_item;
-
-	if (!head || !*head || !(*head)->next_node)
-		return ;
-	current_node = *head;
-	while (current_node->next_node->next_node)
-		current_node = current_node->next_node;
-	last_item = current_node->next_node;
-	current_node->next_node = NULL;
-	last_item->next_node = *head;
-	*head = last_item;
+	ft_printf("pb\n");
+	ps_push(stack_a, stack_b);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_insertion_sort.c                                :+:      :+:    :+:   */
+/*   ps_instruction_sa.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,18 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_insertion_sort(t_list **stack_a, t_list **stack_b)
+void	ps_instruction_sa(t_stack *stack_a)
 {
-	int		a_length;
-	int		position;
-
-	ps_isort_sort_two(stack_a);
-	a_length = ft_list_size(*stack_a);
-	position = 2;
-	while (a_length > 2)
-	{
-		ps_isort_sort(stack_a, stack_b, position);
-		a_length --;
-		position ++;
-	}
+	ft_printf("sa\n");
+	ps_swap(stack_a);
 }

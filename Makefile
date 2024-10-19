@@ -19,7 +19,9 @@ INCLUDES_PATH	= ./include/
 LIBFT_PATH		= ./src/lib/libft/
 LIBFT_INC_PATH	= ${LIBFT_PATH}include/
 OBJECTS_PATH	= ./object/
-INST_OBJ_PATH	= ${OBJECTS_PATH}ps_instructions/
+INST_OBJ_PATH	= ${OBJECTS_PATH}ps_instruction/
+SORT_OBJ_PATH	= ${OBJECTS_PATH}ps_sort/
+STACK_OBJ_PATH	= ${OBJECTS_PATH}ps_stack/
 SOURCES_PATH    = ./src/
 
 
@@ -48,6 +50,7 @@ FCLEAN			= fclean
 RE				= re
 CC_SANITIZER	= sanitize
 VALGRIND		= valgrind
+MOCK_VALGRIND	= mock_valgrind
 RUN_MOCK_VALUES	= mock_run
 RUN_COUNT_LINES = count_run
 VALGRIND_ARGS	= 9 -4 2 7 -5 0
@@ -64,8 +67,10 @@ FCLEAN_LIBFT	= ${MAKE_LIBFT} ${FCLEAN}
 RE_LIBFT		= ${MAKE_LIBFT} ${RE}
 
 
-INST_SOURCES	= $(wildcard ${SOURCES_PATH}ps_instructions/*.c)
-SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${INST_SOURCES}
+INST_SOURCES	= $(wildcard ${SOURCES_PATH}ps_instruction/*.c)
+SORT_SOURCES	= $(wildcard ${SOURCES_PATH}ps_sort/*.c)
+STACK_SOURCES	= $(wildcard ${SOURCES_PATH}ps_stack/*.c)
+SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${INST_SOURCES} ${SORT_SOURCES} ${STACK_SOURCES}
 # "patsubst": pattern substitution
 # parameters: pattern, replacement, text
 #
@@ -92,6 +97,8 @@ ${ALL}: ${NAME}
 ${OBJECTS_PATH}:
 	@${CREATE_PATH} ${OBJECTS_PATH}
 	@${CREATE_PATH} ${INST_OBJ_PATH}
+	@${CREATE_PATH} ${SORT_OBJ_PATH}
+	@${CREATE_PATH} ${STACK_OBJ_PATH}
 
 
 # "$@" refers to the target (%.o)
@@ -135,6 +142,11 @@ ${VALGRIND}: ${NAME}
 	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${VALGRIND_ARGS}
 
 
+${MOCK_VALGRIND}: ${NAME}
+	@$(eval MOCK_VALUES=$(shell seq -49 50 | sort -R | tail -n 500 | tr '\n' ' '))
+	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${MOCK_VALUES}
+
+
 ${RUN_MOCK_VALUES}: ${NAME}
 	@$(eval MOCK_VALUES=$(shell seq -1 5 | sort -R | tail -n 500 | tr '\n' ' '))
 	@echo "Running push_swap with a list of mock values..."
@@ -142,8 +154,8 @@ ${RUN_MOCK_VALUES}: ${NAME}
 
 
 ${RUN_COUNT_LINES}: ${NAME}
-	@$(eval MOCK_VALUES=$(shell seq 1 100 | sort -R | tail -n 500 | tr '\n' ' '))
-	@./${NAME} 2 1 3 6 5 8 ${COUNT_LINES}
+	@$(eval MOCK_VALUES=$(shell seq 1 500 | sort -R | tail -n 500 | tr '\n' ' '))
+	@./${NAME} ${MOCK_VALUES} ${COUNT_LINES}
 
 
 # library rules

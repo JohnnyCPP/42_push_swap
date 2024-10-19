@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_error_handling.c                                :+:      :+:    :+:   */
+/*   ps_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ps_print_error(void)
+void	ps_swap(t_stack *stack)
 {
-	ft_putendl_fd("Error", 2);
-	return (1);
-}
+	t_node	*first_node;
+	t_node	*second_node;
+	t_node	*third_node;
 
-int	ps_duplicated_numbers(int *numbers)
-{
-	free(numbers);
-	return (ps_print_error());
+	if (stack->head && stack->head->next)
+	{
+		first_node = stack->head;
+		second_node = stack->head->next;
+		third_node = second_node->next;
+		stack->head = second_node;
+		first_node->next = third_node;
+		second_node->next = first_node;
+	}
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_error_handling.c                                :+:      :+:    :+:   */
+/*   ps_stack_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,42 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ps_print_error(void)
+static	int	ps_get_index(const int number, const int *numbers, const int size)
 {
-	ft_putendl_fd("Error", 2);
-	return (1);
+	int	current;
+
+	if (!numbers)
+		return (-1);
+	current = 0;
+	while (current < size)
+	{
+		if (numbers[current] == number)
+			return (current);
+		current ++;
+	}
+	return (-1);
 }
 
-int	ps_duplicated_numbers(int *numbers)
+void	ps_init_stacks(t_stack *s_a, t_stack *s_b, int *nums, const int size)
 {
-	free(numbers);
-	return (ps_print_error());
+	int		current_num;
+	t_node	*current_node;
+
+	s_a->head = NULL;
+	s_a->size = 0;
+	s_b->head = NULL;
+	s_b->size = 0;
+	current_num = size - 1;
+	while (current_num >= 0)
+	{
+		ps_stack_push(s_a, 0, nums[current_num]);
+		current_num --;
+	}
+	ps_insertion_sort(nums, size);
+	current_node = s_a->head;
+	while (current_node)
+	{
+		current_node->s_index = ps_get_index(current_node->data, nums, size);
+		current_node = current_node->next;
+	}
 }

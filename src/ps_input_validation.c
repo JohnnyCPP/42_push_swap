@@ -11,43 +11,46 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-static	int	ps_is_duplicated(int *number, t_list *head)
+static	int	ps_is_duplicated(const int *num, const int *nums, const int size)
 {
+	int	current_number;
 	int	times_spotted;
-	int	*current_number;
+	int	iterator;
 
 	times_spotted = 0;
-	while (head)
+	iterator = 0;
+	while (iterator < size)
 	{
-		current_number = (int *) head->data;
-		if (*current_number == *number)
+		current_number = nums[iterator];
+		if (current_number == *num)
 			times_spotted ++;
 		if (times_spotted > 1)
 			return (1);
-		head = head->next_node;
+		iterator ++;
 	}
 	return (0);
 }
 
-int	ps_contains_duplicates(t_list *head)
+int	ps_contains_duplicates(const int *numbers, const int size)
 {
-	t_list	*current_node;
-	int		*number;
-	int		is_duplicated;
+	const int	*number;
+	int			is_duplicated;
+	int			iterator;
 
-	current_node = head;
-	while (current_node)
+	iterator = 0;
+	number = numbers;
+	while (iterator < size && number)
 	{
-		number = (int *) current_node->data;
-		is_duplicated = ps_is_duplicated(number, head);
+		is_duplicated = ps_is_duplicated(number, numbers, size);
 		if (is_duplicated)
 			return (1);
-		current_node = current_node->next_node;
+		iterator ++;
+		number = numbers + iterator;
 	}
 	return (0);
 }
 
-static	int	ps_is_numeric(char *arg)
+static	int	ps_is_numeric(const char *arg)
 {
 	int		is_valid;
 	int		char_index;
@@ -72,11 +75,11 @@ static	int	ps_is_numeric(char *arg)
 	return (is_valid);
 }
 
-int	ps_is_valid_input(int argc, char **argv)
+int	ps_is_valid_input(const int argc, const char **argv)
 {
-	int		is_valid;
-	int		arg_index;
-	char	*arg;
+	const char	*arg;
+	int			is_valid;
+	int			arg_index;
 
 	is_valid = 0;
 	arg_index = 1;

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_pa.c                                :+:      :+:    :+:   */
+/*   ps_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,21 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_pa(t_list **stack_b, t_list **stack_a)
+void	ps_rotate(t_stack *stack)
 {
-	ft_printf("pa\n");
-	ps_push(stack_b, stack_a);
+	t_node	*first_node;
+	t_node	*second_node;
+	t_node	*current_node;
+
+	if (stack->head && stack->head->next)
+	{
+		first_node = stack->head;
+		second_node = first_node->next;
+		stack->head = second_node;
+		current_node = first_node;
+		while (current_node->next)
+			current_node = current_node->next;
+		current_node->next = first_node;
+		first_node->next = NULL;
+	}
 }

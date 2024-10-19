@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_error_handling.c                                :+:      :+:    :+:   */
+/*   ps_instruction_rrb.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ps_print_error(void)
+void	ps_instruction_rrb(t_stack *stack_b)
 {
-	ft_putendl_fd("Error", 2);
-	return (1);
-}
-
-int	ps_duplicated_numbers(int *numbers)
-{
-	free(numbers);
-	return (ps_print_error());
+	ft_printf("rrb\n");
+	ps_reverse_rotate(stack_b);
 }

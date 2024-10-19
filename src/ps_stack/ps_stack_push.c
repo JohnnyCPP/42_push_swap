@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_sa.c                                :+:      :+:    :+:   */
+/*   ps_stack_push.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,17 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_sa(t_list **stack_a)
+void	ps_stack_push(t_stack *stack, const int index, const int data)
 {
-	ft_printf("sa\n");
-	ps_swap(stack_a);
+	t_node	*new_node;
+
+	new_node = (t_node *) ft_calloc(1, sizeof(t_node));
+	if (new_node)
+	{
+		new_node->data = data;
+		new_node->s_index = index;
+		new_node->next = stack->head;
+		stack->head = new_node;
+		stack->size ++;
+	}
 }

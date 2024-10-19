@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_pb.c                                :+:      :+:    :+:   */
+/*   ps_instruction_sb.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_pb(t_list **stack_a, t_list **stack_b)
+void	ps_instruction_sb(t_stack *stack_b)
 {
-	ft_printf("pb\n");
-	ps_push(stack_a, stack_b);
+	ft_printf("sb\n");
+	ps_swap(stack_b);
 }

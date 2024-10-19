@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_swap.c                                          :+:      :+:    :+:   */
+/*   ps_stack_sort.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,16 +11,16 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_swap(t_list **head)
+void	ps_stack_sort(t_stack *stack_a, t_stack *stack_b, int size)
 {
-	t_list	*second_node;
-	t_list	*third_node;
-
-	if (!head || !*head || !(*head)->next_node)
-		return ;
-	second_node = (*head)->next_node;
-	third_node = second_node->next_node;
-	(*head)->next_node = third_node;
-	second_node->next_node = *head;
-	*head = second_node;
+	if (ps_stack_issorted(stack_a))
+		ps_stack_clear(stack_a);
+	else if (size == 2)
+		ps_instruction_sa(stack_a);
+	else if (size == 3)
+		ps_short_sort(stack_a, size);
+	else if (size <= 7)
+		ps_simple_insertion_sort(stack_a, stack_b, size);
+	else if (size > 7)
+		ps_k_sort(stack_a, stack_b, size);
 }

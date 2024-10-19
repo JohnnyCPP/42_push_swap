@@ -155,6 +155,21 @@ int		ft_isbinary(const char character);
 int		ft_isbinarystr(const char *character);
 
 /**
+ * @brief Calculates the integer square root of a given number.
+ *
+ * @param number The number for which the square root is to be calculated.
+ *
+ * @return The integer square root of the given number.
+ *
+ * This function computes the largest integer 'x' such that "x * x" 
+ * is less than or equal to the given number.
+ *
+ * If the number is less than 4, it returns 1. Otherwise, it uses a simple 
+ * iterative method to find the integer square root.
+ */
+int		ft_sqrt(const int number);
+
+/**
  * @brief Calculates the length of a string.
  *
  * @param[character] A pointer to the first character of the string.

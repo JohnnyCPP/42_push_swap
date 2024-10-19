@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_instruction_rra.c                               :+:      :+:    :+:   */
+/*   ps_stack_pop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,8 +11,15 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-void	ps_instruction_rra(t_list **stack_a)
+void	ps_stack_pop(t_stack *stack)
 {
-	ft_printf("rra\n");
-	ps_reverse_rotate(stack_a);
+	t_node	*head;
+
+	if (stack->head)
+	{
+		head = stack->head;
+		stack->head = head->next;
+		free(head);
+		stack->size --;
+	}
 }

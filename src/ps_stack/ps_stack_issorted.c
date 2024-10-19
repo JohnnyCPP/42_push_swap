@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ps_error_handling.c                                :+:      :+:    :+:   */
+/*   ps_stack_issorted.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,14 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-int	ps_print_error(void)
+int	ps_stack_issorted(const t_stack *stack)
 {
-	ft_putendl_fd("Error", 2);
-	return (1);
-}
+	t_node	*current_node;
+	t_node	*next_node;
 
-int	ps_duplicated_numbers(int *numbers)
-{
-	free(numbers);
-	return (ps_print_error());
+	current_node = stack->head;
+	next_node = current_node->next;
+	while (next_node)
+	{
+		if (current_node->data > next_node->data)
+			return (0);
+		current_node = current_node->next;
+		next_node = current_node->next;
+	}
+	return (1);
 }
