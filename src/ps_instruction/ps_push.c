@@ -16,11 +16,10 @@ void	ps_push(t_stack *source, t_stack *destination)
 	int	source_index;
 	int	source_data;
 
-	if (source->head)
-	{
-		source_index = source->head->s_index;
-		source_data = source->head->data;
-		ps_stack_pop(source);
-		ps_stack_push(destination, source_index, source_data);
-	}
+	if (!source->head)
+		return ;
+	source_index = source->head->s_index;
+	source_data = source->head->data;
+	ps_stack_pop(source);
+	ps_stack_push(destination, source_index, source_data);
 }

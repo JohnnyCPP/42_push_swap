@@ -20,11 +20,11 @@
  * This structure keeps track of its position in the stack, 
  * contains data as an integer value, and a pointer to a next node.
  */
-typedef	struct	s_node
+typedef struct s_node
 {
 	int				data;
 	int				s_index;
-	struct	s_node	*next;
+	struct s_node	*next;
 }	t_node;
 
 /**
@@ -33,7 +33,7 @@ typedef	struct	s_node
  * This structure keeps track of its size, and contains 
  * a pointer to the first node of the stack, the head.
  */
-typedef	struct	s_stack
+typedef struct s_stack
 {
 	t_node	*head;
 	int		size;
@@ -117,7 +117,7 @@ void	ps_insertion_sort(int *numbers, const int size);
  * @param nums A list of numbers to initialize stack_a with.
  * @param size The amount of numbers in the list of numbers.
  */
-void	ps_init_stacks(t_stack *s_a, t_stack *s_b, int *nums, const int size);
+void	ps_init_stacks(t_stack *s_a, t_stack *s_b, int *nums, int size);
 
 /**
  * @brief Starting from the head, deletes and frees all nodes of a stack.
@@ -235,7 +235,7 @@ void	ps_stack_sort(t_stack *stack_a, t_stack *stack_b, int size);
  *
  * @return An integer representing the lowest index in the stack.
  */
-int	ps_get_min_index(const t_stack *stack);
+int		ps_get_min_index(const t_stack *stack);
 
 /**
  * @brief Gets the position of the passed index, starting from 0.
@@ -245,7 +245,7 @@ int	ps_get_min_index(const t_stack *stack);
  *
  * @return An integer representing the position of the index in the stack.
  */
-int	ps_get_index_position(const t_node *head, const int index);
+int		ps_get_index_position(const t_node *head, const int index);
 
 /**
  * @brief Checks if a list of numbers contains two instances of a number.

@@ -27,7 +27,7 @@ static	int	ps_get_index(const int number, const int *numbers, const int size)
 	return (-1);
 }
 
-void	ps_init_stacks(t_stack *s_a, t_stack *s_b, int *nums, const int size)
+void	ps_init_stacks(t_stack *s_a, t_stack *s_b, int *nums, int size)
 {
 	int		current_num;
 	t_node	*current_node;

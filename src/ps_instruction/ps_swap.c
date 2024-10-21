@@ -17,13 +17,12 @@ void	ps_swap(t_stack *stack)
 	t_node	*second_node;
 	t_node	*third_node;
 
-	if (stack->head && stack->head->next)
-	{
-		first_node = stack->head;
-		second_node = stack->head->next;
-		third_node = second_node->next;
-		stack->head = second_node;
-		first_node->next = third_node;
-		second_node->next = first_node;
-	}
+	if (!stack->head || !stack->head->next)
+		return ;
+	first_node = stack->head;
+	second_node = stack->head->next;
+	third_node = second_node->next;
+	stack->head = second_node;
+	first_node->next = third_node;
+	second_node->next = first_node;
 }

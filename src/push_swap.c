@@ -30,16 +30,7 @@ int	main(const int argc, const char **argv)
 	if (!is_valid)
 		return (ps_duplicated_numbers(numbers));
 	ps_init_stacks(&stack_a, &stack_b, numbers, numbers_amount);
-	ft_printf("Stack A: ");
-	ps_stack_print(&stack_a);
-	ft_printf("\n");
 	ps_stack_sort(&stack_a, &stack_b, numbers_amount);
-	ft_printf("Stack A: ");
-	ps_stack_print(&stack_a);
-	ft_printf("\n");
-	ft_printf("Stack B: ");
-	ps_stack_print(&stack_b);
-	ft_printf("\n");
 	ps_stack_clear(&stack_a);
 	free(numbers);
 	return (0);

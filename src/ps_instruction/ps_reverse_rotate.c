@@ -16,14 +16,13 @@ void	ps_reverse_rotate(t_stack *stack)
 	t_node	*next_node;
 	t_node	*current_node;
 
-	if (stack->head && stack->head->next)
-	{
-		current_node = stack->head;
-		while (current_node->next->next)
-			current_node = current_node->next;
-		next_node = current_node->next;
-		current_node->next = NULL;
-		next_node->next = stack->head;
-		stack->head = next_node;
-	}
+	if (!stack->head || !stack->head->next)
+		return ;
+	current_node = stack->head;
+	while (current_node->next->next)
+		current_node = current_node->next;
+	next_node = current_node->next;
+	current_node->next = NULL;
+	next_node->next = stack->head;
+	stack->head = next_node;
 }

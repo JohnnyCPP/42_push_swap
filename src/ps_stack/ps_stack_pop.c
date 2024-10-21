@@ -15,11 +15,10 @@ void	ps_stack_pop(t_stack *stack)
 {
 	t_node	*head;
 
-	if (stack->head)
-	{
-		head = stack->head;
-		stack->head = head->next;
-		free(head);
-		stack->size --;
-	}
+	if (!stack->head)
+		return ;
+	head = stack->head;
+	stack->head = head->next;
+	free(head);
+	stack->size --;
 }

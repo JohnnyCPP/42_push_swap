@@ -15,10 +15,10 @@ static	void	ps_k_sort_second(t_stack *stack_a, t_stack *stack_b, int size)
 {
 	int	end_position;
 	int	position;
-	
+
 	while (size - 1 >= 0)
 	{
-		end_position = ps_get_index_position(stack_a->head, size - 1);
+		end_position = ps_get_index_position(stack_b->head, size - 1);
 		position = (size + 3) - end_position;
 		if (end_position <= position)
 		{
@@ -48,7 +48,7 @@ static	void	ps_k_sort_first(t_stack *stack_a, t_stack *stack_b, int size)
 	while (stack_a->head)
 	{
 		i_of_a = stack_a->head->s_index;
-		if (i_of_a <= 1)
+		if (i_of_a <= iterator)
 		{
 			ps_instruction_pb(stack_a, stack_b);
 			ps_instruction_rb(stack_b);

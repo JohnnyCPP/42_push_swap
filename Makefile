@@ -36,6 +36,10 @@ CFLAGS			= -Wall -Wextra -Werror
 # additional information to debug preprocessor directives
 DEBUG_SYMBOLS	= -g3
 SANITIZE_FLAGS	= -fsanitize=address ${DEBUG_SYMBOLS}
+# "--track-origin=yes" tracks the origin of uninitialized values
+# "-s" display a summary of the results directly in the terminal
+# "--leak-check=full" enable detailed memory leak detection, and 
+#                     report every possible memory leak
 VALGRIND_FLAGS	= --track-origins=yes -s --leak-check=full
 COUNT_LINES		= | wc -l
 INCLUDE_LIBFT	= -I ${LIBFT_INC_PATH}
@@ -58,6 +62,12 @@ LIB_DELETE		= lib_${DELETE}
 LIB_CLEAN		= lib_${CLEAN}
 LIB_FCLEAN		= lib_${FCLEAN}
 LIB_RE			= lib_${RE}
+
+
+PHONY			= .PHONY
+STD_PHONY		= ${ALL} ${CLEAN} ${FCLEAN} ${RE}
+DEBUG_PHONY		= ${CC_SANITIZER} ${VALGRIND} ${MOCK_VALGRIND} ${RUN_MOCK_VALUES} ${RUN_COUNT_LINES}
+LIB_PHONY		= ${LIB_DELETE} ${LIB_CLEAN} ${LIB_FCLEAN} ${LIB_RE}
 
 
 MAKE_LIBFT		= ${MAKE_LIB} ${LIBFT_PATH}
@@ -143,18 +153,18 @@ ${VALGRIND}: ${NAME}
 
 
 ${MOCK_VALGRIND}: ${NAME}
-	@$(eval MOCK_VALUES=$(shell seq -49 50 | sort -R | tail -n 500 | tr '\n' ' '))
+	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
 	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${MOCK_VALUES}
 
 
 ${RUN_MOCK_VALUES}: ${NAME}
-	@$(eval MOCK_VALUES=$(shell seq -1 5 | sort -R | tail -n 500 | tr '\n' ' '))
+	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
 	@echo "Running push_swap with a list of mock values..."
 	@./${NAME} ${MOCK_VALUES}
 
 
 ${RUN_COUNT_LINES}: ${NAME}
-	@$(eval MOCK_VALUES=$(shell seq 1 500 | sort -R | tail -n 500 | tr '\n' ' '))
+	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
 	@./${NAME} ${MOCK_VALUES} ${COUNT_LINES}
 
 
@@ -182,4 +192,4 @@ ${LIB_RE}:
 	@${RE_LIBFT}
 
 
-.PHONY: ${ALL} ${CLEAN} ${FCLEAN} ${RE} ${LIB_DELETE} ${LIB_CLEAN} ${LIB_FCLEAN} ${LIB_RE}
+${PHONY}: ${STD_PHONY} ${DEBUG_PHONY} ${LIB_PHONY}

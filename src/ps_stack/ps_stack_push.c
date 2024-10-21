@@ -16,12 +16,11 @@ void	ps_stack_push(t_stack *stack, const int index, const int data)
 	t_node	*new_node;
 
 	new_node = (t_node *) ft_calloc(1, sizeof(t_node));
-	if (new_node)
-	{
-		new_node->data = data;
-		new_node->s_index = index;
-		new_node->next = stack->head;
-		stack->head = new_node;
-		stack->size ++;
-	}
+	if (!new_node)
+		return ;
+	new_node->data = data;
+	new_node->s_index = index;
+	new_node->next = stack->head;
+	stack->head = new_node;
+	stack->size ++;
 }

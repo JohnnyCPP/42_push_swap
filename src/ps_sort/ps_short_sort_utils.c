@@ -13,7 +13,7 @@
 
 int	ps_get_min_index(const t_stack *stack)
 {
-	const	t_node	*current_node;
+	const t_node	*current_node;
 	int				current_index;
 	int				result;
 
@@ -33,7 +33,7 @@ int	ps_get_min_index(const t_stack *stack)
 
 int	ps_get_index_position(const t_node *head, const int index)
 {
-	const	t_node	*current_node;
+	const t_node	*current_node;
 	int				current_position;
 	int				current_index;
 

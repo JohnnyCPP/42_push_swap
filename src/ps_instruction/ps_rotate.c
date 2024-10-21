@@ -17,15 +17,14 @@ void	ps_rotate(t_stack *stack)
 	t_node	*second_node;
 	t_node	*current_node;
 
-	if (stack->head && stack->head->next)
-	{
-		first_node = stack->head;
-		second_node = first_node->next;
-		stack->head = second_node;
-		current_node = first_node;
-		while (current_node->next)
-			current_node = current_node->next;
-		current_node->next = first_node;
-		first_node->next = NULL;
-	}
+	if (!stack->head || !stack->head->next)
+		return ;
+	first_node = stack->head;
+	second_node = first_node->next;
+	stack->head = second_node;
+	current_node = first_node;
+	while (current_node->next)
+		current_node = current_node->next;
+	current_node->next = first_node;
+	first_node->next = NULL;
 }

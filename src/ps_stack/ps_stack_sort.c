@@ -14,7 +14,7 @@
 void	ps_stack_sort(t_stack *stack_a, t_stack *stack_b, int size)
 {
 	if (ps_stack_issorted(stack_a))
-		ps_stack_clear(stack_a);
+		return ;
 	else if (size == 2)
 		ps_instruction_sa(stack_a);
 	else if (size == 3)

@@ -38,7 +38,7 @@ void	ps_short_sort(t_stack *stack_a, const int size)
 	int				min_index;
 	int				position;
 
-	if (!stack_a)
+	if (!stack_a || ps_stack_issorted(stack_a))
 		return ;
 	min_index = ps_get_min_index(stack_a);
 	position = ps_get_index_position(stack_a->head, min_index);
