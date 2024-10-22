@@ -18,14 +18,18 @@
 INCLUDES_PATH	= ./include/
 LIBFT_PATH		= ./src/lib/libft/
 LIBFT_INC_PATH	= ${LIBFT_PATH}include/
+PUSH_SWAP_PATH	= ../../../
 OBJECTS_PATH	= ./object/
 INST_OBJ_PATH	= ${OBJECTS_PATH}ps_instruction/
 STACK_OBJ_PATH	= ${OBJECTS_PATH}ps_stack/
+BONUS_OBJ_PATH	= ${OBJECTS_PATH}ps_bonus/
 SOURCES_PATH    = ./src/
 
 
 LIBFT_NAME		= ${LIBFT_PATH}libft.a
 NAME			= checker
+PUSH_SWAP		= push_swap
+PUSH_SWAP_NAME	= ${PUSH_SWAP_PATH}${PUSH_SWAP}
 
 
 CC				= cc
@@ -36,6 +40,7 @@ VALGRIND_FLAGS	= --track-origins=yes -s --leak-check=full
 INCLUDE_LIBFT	= -I ${LIBFT_INC_PATH}
 INCLUDE			= -I ${INCLUDES_PATH} ${INCLUDE_LIBFT}
 MAKE_LIB		= make -sC
+MOVE_PUSH_SWAP	= mv ${PUSH_SWAP_NAME} ./${PUSH_SWAP}
 
 
 ALL				= all
@@ -47,6 +52,7 @@ CC_SANITIZER	= sanitize
 VALGRIND		= valgrind
 MOCK_VALGRIND	= mock_valgrind
 RUN_MOCK_VALUES	= mock_run
+RUN_TEST_ERROR	= test_error
 VALGRIND_ARGS	= 9 -4 2 7 -5 0
 LIB_DELETE		= lib_${DELETE}
 LIB_CLEAN		= lib_${CLEAN}
@@ -67,9 +73,13 @@ FCLEAN_LIBFT	= ${MAKE_LIBFT} ${FCLEAN}
 RE_LIBFT		= ${MAKE_LIBFT} ${RE}
 
 
+MAKE_PUSH_SWAP	= ${MAKE_LIB} ${PUSH_SWAP_PATH}
+
+
 INST_SOURCES	= $(wildcard ${SOURCES_PATH}ps_instruction/*.c)
 STACK_SOURCES	= $(wildcard ${SOURCES_PATH}ps_stack/*.c)
-SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${INST_SOURCES} ${STACK_SOURCES}
+BONUS_SOURCES	= $(wildcard ${SOURCES_PATH}ps_bonus/*.c)
+SOURCE_FILES	= $(wildcard ${SOURCES_PATH}*.c) ${INST_SOURCES} ${STACK_SOURCES} ${BONUS_SOURCES}
 OBJECT_FILES	= ${patsubst ${SOURCES_PATH}%.c, ${OBJECTS_PATH}%.o, ${SOURCE_FILES}}
 
 
@@ -89,6 +99,7 @@ ${OBJECTS_PATH}:
 	@${CREATE_PATH} ${OBJECTS_PATH}
 	@${CREATE_PATH} ${INST_OBJ_PATH}
 	@${CREATE_PATH} ${STACK_OBJ_PATH}
+	@${CREATE_PATH} ${BONUS_OBJ_PATH}
 
 
 ${OBJECTS_PATH}%.o: ${SOURCES_PATH}%.c | ${OBJECTS_PATH}
@@ -108,6 +119,7 @@ ${CLEAN}: ${LIB_CLEAN}
 
 ${FCLEAN}: ${LIB_CLEAN} ${LIB_DELETE} ${CLEAN}
 	@${DELETE_FILE} ${LIBFT_NAME}
+	@${DELETE_FILE} ${PUSH_SWAP}
 	@${DELETE_FILE} ${NAME}
 	@echo "The program \"${NAME}\" has been deleted."
 
@@ -115,24 +127,35 @@ ${FCLEAN}: ${LIB_CLEAN} ${LIB_DELETE} ${CLEAN}
 ${RE}: ${FCLEAN} ${ALL}
 
 
+${PUSH_SWAP}:
+	@${MAKE_PUSH_SWAP}
+	@${MOVE_PUSH_SWAP}
+	@echo "The program \"push_swap\" has been moved to the working directory."
+
+
 ${CC_SANITIZER}: ${LIBFT_NAME} ${OBJECT_FILES}
 	@${CC} ${CFLAGS} ${SANITIZE_FLAGS} ${OBJECT_FILES} ${LIBFT_NAME} -o ${NAME}
 	@echo "C compiler's sanitizer has been added to debug memory issues."
 
 
-${VALGRIND}: ${NAME}
-	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${VALGRIND_ARGS}
+${VALGRIND}: ${NAME} ${PUSH_SWAP}
+	@./${PUSH_SWAP} ${VALGRIND_ARGS} | ${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${VALGRIND_ARGS}
 
 
-${MOCK_VALGRIND}: ${NAME}
+${MOCK_VALGRIND}: ${NAME} ${PUSH_SWAP}
 	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
-	@${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${MOCK_VALUES}
+	@./${PUSH_SWAP} ${MOCK_VALUES} | ${VALGRIND} ${VALGRIND_FLAGS} ./${NAME} ${MOCK_VALUES}
 
 
-${RUN_MOCK_VALUES}: ${NAME}
+${RUN_MOCK_VALUES}: ${NAME} ${PUSH_SWAP}
 	@$(eval MOCK_VALUES=$(shell seq -1000 1000 | sort -R | tail -n 500 | tr '\n' ' '))
-	@echo "Running push_swap with a list of mock values..."
-	@./${NAME} ${MOCK_VALUES}
+	@echo "Running checker with a list of mock values..."
+	@./${PUSH_SWAP} ${MOCK_VALUES} | ./${NAME} ${MOCK_VALUES}
+
+
+${RUN_TEST_ERROR}: ${NAME} ${PUSH_SWAP}
+	@echo "Running checker in a case where the list is not sorted..."
+	@./${PUSH_SWAP} 5 9 0 2 -3 22 | ./${NAME} 1 0 4 2
 
 
 # library rules

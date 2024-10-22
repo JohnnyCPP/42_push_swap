@@ -303,6 +303,24 @@ char	*ft_strchr(const char *string, int character);
 char	*ft_strrchr(const char *string, int character);
 
 /**
+ * @brief Compares two strings.
+ *
+ * @param ptr_find The first string to compare.
+ * @param ptr_str The second string to compare.
+ *
+ * @return An integer less than, equal to, or greater than zero if the 
+ *         first string is found to be less than, equal to, or greater 
+ *         than the second string, respectively.
+ *
+ * This function compares two strings character by character 
+ * until a null-terminator is encountered.
+ *
+ * The return value indicates the difference between the two strings 
+ * at the first differing position.
+ */
+int		ft_strcmp(const char *ptr_find, const char *ptr_str);
+
+/**
  * @brief Compares two strings up to a specified amount of characters.
  *
  * @param ptr_find The first string to compare.
@@ -318,7 +336,7 @@ char	*ft_strrchr(const char *string, int character);
  * The return value indicates the difference between the two strings 
  * at the first differing position.
  */
-size_t	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length);
+int		ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length);
 
 /**
  * @brief Searches for the first occurrence of a byte in a memory block.

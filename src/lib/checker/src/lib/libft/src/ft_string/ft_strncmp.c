@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
+int	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
 {
 	size_t			index;
 	unsigned char	*aux1;

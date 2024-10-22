@@ -40,6 +40,106 @@ typedef struct s_stack
 }	t_stack;
 
 /**
+ * @brief Checks if "stack_a" is sorted and "stack_b" is empty.
+ *
+ * @param stack_a A stack with numbers to be sorted.
+ * @param stack_b An empty helper stack.
+ *
+ * If the "stack_a" is sorted and "stack_b" is empty, prints to the stdout 
+ * "OK" followed by a newline character.
+ *
+ * Otherwise, prints to the stdout "KO" followed by a newline character.
+ */
+void	psb_check_result(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Modifies "stack_a" and/or "stack_b", applying an instruction.
+ *
+ * @param instruction A string representing the instruction to issue.
+ * @param stack_a A stack to be manipulated.
+ * @param stack_b Another stack to be manipulated.
+ *
+ * This function will compare the "instruction" string with a set of 
+ * strings that represent possible instructions.
+ *
+ * The action to perform depends on the string that will match "instruction".
+ *
+ * This function assumes that "instruction" is one of the possible 
+ * instructions, so it must be verified first.
+ */
+void	psb_instruct(char *instruction, t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Prints "Error" to the standard error stream.
+ *
+ * @param line_read A string read from standard input stream.
+ *
+ * @return Always 1.
+ * 
+ * This function frees "line_read" memory, prints "Error", and returns 1.
+ */
+int		psb_invalid_instruction(char *line_read);
+
+/**
+ * @brief Verifies that a string is a possible instruction to issue.
+ *
+ * @param line_read A string read from standard input stream.
+ *
+ * @return 1 if the string is an instruction, 0 otherwise.
+ *
+ * This function compares "line_read" to a set of strings that represent 
+ * possible instructions to issue to the stacks.
+ */
+int		psb_is_instruction(char *line_read);
+
+/**
+ * @brief Read and issue instructions from standard input stream.
+ *
+ * @param stack_a A stack with numbers to be sorted.
+ * @param stack_b An empty helper stack.
+ *
+ * @return 1 if the program finds invalid instructions, 0 otherwise.
+ *
+ * This function keeps reading bytes from stdin and, for each line read 
+ * until a newline character, compares the instructions with a given 
+ * set of possible instructions.
+ *
+ * If the instruction is correct, it's applied, if not, 
+ * frees the line read memory and returns 1.
+ */
+int		psb_read_stdin(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Swaps the two first elements of "stack_a" and "stack_b".
+ *
+ * @param stack_a One of the stacks to swap elements to.
+ * @param stack_b Another stack to swap elements to.
+ *
+ * This function calls "ps_swap" function twice, on both stacks.
+ */
+void	psb_ss(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Rotates elements of "stack_a" and "stack_b".
+ *
+ * @param stack_a One of the stacks to rotate elements to.
+ * @param stack_b Another stack to rotate elements to.
+ *
+ * This function calls "ps_rotate" function twice, on both stacks.
+ */
+void	psb_rr(t_stack *stack_a, t_stack *stack_b);
+
+/**
+ * @brief Inversely rotates elements of "stack_a" and "stack_b".
+ *
+ * @param stack_a One of the stacks to rotate elements to.
+ * @param stack_b Another stack to rotate elements to.
+ *
+ * This function calls "ps_reverse_rotate" function twice, on both stacks.
+ */
+void	psb_rrr(t_stack *stack_a, t_stack *stack_b);
+
+/**
  * @brief Prints "Error" followed by a newline character.
  *
  * @return Always returns 1, which is meant to be "ended with errors".

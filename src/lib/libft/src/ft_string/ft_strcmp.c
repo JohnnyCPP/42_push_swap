@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jonnavar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,21 +11,19 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_strncmp(const char *ptr_find, const char *ptr_str, size_t length)
+int	ft_strcmp(const char *string_1, const char *string_2)
 {
 	size_t			index;
-	unsigned char	*aux1;
-	unsigned char	*aux2;
+	unsigned char	*str1_copy;
+	unsigned char	*str2_copy;
 
-	if (!ptr_find || !ptr_str)
-		return (0);
 	index = 0;
-	aux1 = (unsigned char *) ptr_find;
-	aux2 = (unsigned char *) ptr_str;
-	while ((aux2[index] != 0 || aux1[index] != 0) && index < length)
+	str1_copy = (unsigned char *) string_1;
+	str2_copy = (unsigned char *) string_2;
+	while (str1_copy[index] || str2_copy[index])
 	{
-		if (aux2[index] != aux1[index])
-			return (aux1[index] - aux2[index]);
+		if (str2_copy[index] != str1_copy[index])
+			return (str1_copy[index] - str2_copy[index]);
 		index ++;
 	}
 	return (0);
